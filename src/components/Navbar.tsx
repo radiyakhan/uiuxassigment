@@ -9,9 +9,6 @@ import Link from "next/link";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -48,7 +45,7 @@ const Navbar = () => {
 
     {/* Icons Section */}
     <div className="flex">
-    <div className=" lg:block hidden items-center gap-4">
+    <div className=" lg:block md:hidden hidden items-center gap-4">
       <Image src={log} alt="logo" className="w-5 lg:w-6" />
       <Image src={search} alt="search" className="w-5 lg:w-6" />
       <Image src={heart} alt="heart" className="w-5 lg:w-6" />
