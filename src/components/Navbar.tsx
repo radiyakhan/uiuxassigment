@@ -9,6 +9,9 @@ import Link from "next/link";
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -44,11 +47,13 @@ const Navbar = () => {
     </ul>
 
     {/* Icons Section */}
-    <div className="flex items-center gap-4">
+    <div className="flex">
+    <div className=" lg:block hidden items-center gap-4">
       <Image src={log} alt="logo" className="w-5 lg:w-6" />
       <Image src={search} alt="search" className="w-5 lg:w-6" />
       <Image src={heart} alt="heart" className="w-5 lg:w-6" />
       <Image src={cart} alt="cart" className="w-5 lg:w-6" />
+    </div>
     </div>
 
     {/* Mobile Menu Trigger */}
@@ -58,7 +63,7 @@ const Navbar = () => {
           <GiHamburgerMenu className="text-2xl" />
         </SheetTrigger>
         <SheetContent>
-          <ul className="space-y-6 bg-white">
+          <ul className="space-y-4">
             <Link href={"/"}>
               <li className="text-black font-bold text-xl">Home</li>
             </Link>
@@ -72,7 +77,7 @@ const Navbar = () => {
               <li className="text-black font-bold text-xl">Contact</li>
             </Link>
           </ul>
-          <div className="flex items-center justify-center gap-9 mt-6">
+          <div className="flex items-center justify-center gap-6 mt-6">
             <Image src={log} alt="logo" className="w-6" />
             <Image src={search} alt="search" className="w-6" />
             <Image src={heart} alt="heart" className="w-6" />
