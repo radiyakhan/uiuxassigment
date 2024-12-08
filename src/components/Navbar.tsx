@@ -58,7 +58,7 @@ const Navbar = () => {
           <GiHamburgerMenu className="text-2xl" />
         </SheetTrigger>
         <SheetContent>
-          <ul className="space-y-4">
+          <ul className="space-y-6 bg-white">
             <Link href={"/"}>
               <li className="text-black font-bold text-xl">Home</li>
             </Link>
@@ -72,7 +72,7 @@ const Navbar = () => {
               <li className="text-black font-bold text-xl">Contact</li>
             </Link>
           </ul>
-          <div className="flex items-center justify-center gap-6 mt-6">
+          <div className="flex items-center justify-center gap-9 mt-6">
             <Image src={log} alt="logo" className="w-6" />
             <Image src={search} alt="search" className="w-6" />
             <Image src={heart} alt="heart" className="w-6" />
