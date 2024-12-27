@@ -1,8 +1,5 @@
 import Image from 'next/image'
 import React from 'react'
-import pic1 from '../../public/Image-living room.jpg'
-import pic2 from '../../public/Mask Group.jpg'
-import pic3 from '../../public/Mask Group1.jpg'
 
 const BrowseRange = () => {
   return (

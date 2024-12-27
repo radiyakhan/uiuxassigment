@@ -5,8 +5,6 @@ import { FaClock, FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { GoVerified } from "react-icons/go";
 import { HiOutlineTrophy } from "react-icons/hi2";
-import hand from '../../../public/hand.png'
-import head from '../../../public/head.png'
 
 const page = () => {
   return (
