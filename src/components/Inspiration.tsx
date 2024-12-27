@@ -1,32 +1,3 @@
-// import React from "react";
-// import room1 from '../../public/room1.jpg';
-// import room2 from '../../public/room2.jpg';
-// import Image from "next/image";
-
-// const Inspiration = () => {
-//   return (
-//     <div className="flex flex-wrap mt-14 bg-bgpeach h-auto w-full p-10">
-//       <div className="flex-1 space-y-6">
-//         <h1 className="font-bold mt-[130px] text-[32px] md:text-[40px] w-[422px] leading-tight text-gray-800">
-//           50+ Beautiful rooms inspiration
-//         </h1>
-//         <p className="font-medium w-[368px] text-base text-gray-600">
-//           Our designer already made a lot of beautiful prototypes of rooms that inspire you.
-//         </p>
-//         <button className="w-[222px] h-[50px] bg-brown text-white text-base font-bold text-center rounded hover:bg-opacity-80 transition">
-//           Explore More
-//         </button>
-//       </div>
-//       <div className="flex flex-1 justify-center mt-6 md:mt-0 space-x-3">
-//         <Image src={room1} alt="Room 1" className="rounded-lg object-cover w-[380px] md:h-[582px]" />
-//         <Image src={room2} alt="Room 2" className="rounded-lg object-cover w-[290px] md:h-[486px]" />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Inspiration;
-
 import React from "react";
 import room1 from "../../public/room1.jpg";
 import room2 from "../../public/room2.jpg";
@@ -37,12 +8,12 @@ import { GoDotFill } from "react-icons/go";
 
 const Inspiration = () => {
   return (
-    <div className="flex flex-wrap mt-14 bg-bgpeach h-auto w-full p-10">
+    <div className="flex overflow-x-hidden flex-wrap mt-14 bg-bgpeach h-auto w-full lg:p-10 p-6">
       <div className="flex-1 space-y-6">
-        <h1 className="font-bold mt-[130px] text-[32px] md:text-[40px] w-[422px] leading-tight text-gray-800">
+        <h1 className="font-bold mt-[130px] lg:text-[32px] md:text-[40px] lg:w-[422px] w-[200px] text-[20px] leading-tight text-gray-800">
           50+ Beautiful rooms inspiration
         </h1>
-        <p className="font-medium w-[368px] text-base text-gray-600">
+        <p className="font-medium lg:w-[368px]  lg:text-base text-gray-600 ">
           Our designer already made a lot of beautiful prototypes of rooms that
           inspire you.
         </p>
@@ -50,8 +21,8 @@ const Inspiration = () => {
           Explore More
         </button>
       </div>
-      <div className="flex flex-wrap justify-center mt-6 md:mt-0 space-x-3 relative">
-        <div className="relative w-[400px] md:h-[582px]">
+      <div className="flex flex-wrap lg:justify-center mt-6 md:mt-0 space-x-3 relative">
+        <div className="relative lg:w-[400px] w-[250px] md:h-[582px]">
           <Image
             src={room1}
             alt="Room 1"

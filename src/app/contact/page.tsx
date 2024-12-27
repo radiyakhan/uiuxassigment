@@ -117,39 +117,71 @@ const page = () => {
   </div>
 
   {/* Features Section */}
-  <div className="bg-peach py-10">
-    <div className="container mx-auto flex flex-wrap justify-around">
-      {/* Feature Item */}
-      <div className="flex items-center space-x-4 mb-6 md:mb-0">
-        <HiOutlineTrophy className="w-12 h-12 text-gray-800" />
-        <div>
-          <h1 className="text-lg font-semibold">High Quality</h1>
-          <p className="text-sm text-gray-700">Crafted from top materials</p>
-        </div>
-      </div>
-      <div className="flex items-center space-x-4 mb-6 md:mb-0">
-        <GoVerified className="w-12 h-12 text-gray-800" />
-        <div>
-          <h1 className="text-lg font-semibold">Warranty Protection</h1>
-          <p className="text-sm text-gray-700">Over 2 years</p>
-        </div>
-      </div>
-      <div className="flex items-center space-x-4 mb-6 md:mb-0">
-        <Image src={hand} alt="hand" className="w-12 h-12" />
-        <div>
-          <h1 className="text-lg font-semibold">Free Shipping</h1>
-          <p className="text-sm text-gray-700">Order over 150 $</p>
-        </div>
-      </div>
-      <div className="flex items-center space-x-4">
-        <Image src={head} alt="hand" className="w-12 h-12" />
-        <div>
-          <h1 className="text-lg font-semibold">24/7 Support</h1>
-          <p className="text-sm text-gray-700">Dedicated support</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div className="h-auto lg:h-[270px] flex flex-col lg:flex-row items-center justify-center bg-[#FAF3EA] px-4 py-6">
+              <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
+                {/* High Quality */}
+                <div className="h-auto lg:h-[70px] w-full sm:w-[337px] flex items-center gap-2">
+                  <HiOutlineTrophy className="w-12 h-12 text-gray-800" />
+                  <div>
+                    <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
+                      High Quality
+                    </h2>
+                    <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
+                      crafted from top materials
+                    </p>
+                  </div>
+                </div>
+        
+                {/* Warranty Protection */}
+                <div className="h-auto lg:h-[70px] w-full sm:w-[338px] flex items-center gap-2">
+                  <GoVerified className="w-12 h-12 text-gray-800" />
+                  <div>
+                    <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
+                      Warranty Protection
+                    </h2>
+                    <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
+                      Over 2 years
+                    </p>
+                  </div>
+                </div>
+        
+                {/* Free Shipping */}
+                <div className="h-auto lg:h-[70px] w-full sm:w-[244px] flex items-center gap-2">
+                  <Image
+                    src={"/hand.png"}
+                    alt="Free Shipping"
+                    height={60}
+                    width={60}
+                  />
+                  <div>
+                    <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
+                      Free Shipping
+                    </h2>
+                    <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
+                      Order over 150 $
+                    </p>
+                  </div>
+                </div>
+        
+                {/* 24/7 Support */}
+                <div className="h-auto lg:h-[70px] w-full sm:w-[249px] flex items-center gap-2">
+                  <Image
+                    src={"/head.png"}
+                    alt="Customer Support"
+                    height={60}
+                    width={60}
+                  />
+                  <div>
+                    <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
+                      24 / 7 Support
+                    </h2>
+                    <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
+                      Dedicated support
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 </div>
   );
 };

@@ -1,92 +1,98 @@
-import Image from "next/image";
-import React from "react";
-import logo from "../../public/logo.png";
-import log from "../../public/men.jpg";
-import heart from "../../public/heart.jpg";
-import search from "../../public/search.png";
-import cart from "../../public/cart.jpg";
-import Link from "next/link";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+'use client'
 
-const Navbar = () => {
+import Link from 'next/link';
+import Image from 'next/image';
+import React, { useState } from 'react';
+import { AiOutlineMenu } from "react-icons/ai";
+
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="w-full fixed z-10 top-0 bg-white">
-  {/* Desktop Navbar */}
-  <div className="w-full h-[61px] flex items-center justify-between px-6 lg:px-16">
-    {/* Logo Section */}
-    <div className="flex items-center gap-3">
-      <div className="w-[50px] h-[32px]">
-        <Image src={logo} alt="logo" />
+    <header className="bg-white sticky top-0 z-50 shadow-md">
+      <div className="container mx-auto flex items-center justify-between py-4 lg:px-7 px-6 overflow-x-hidden">
+        {/* Logo */}
+        <div className="flex items-center lg:space-x-2">
+          <Image src="/logo.png" alt="Meubel House Logo" width={45} height={45} />
+          <span className="text-3xl font-bold text-black">Furniro</span>
+        </div>
+
+        {/* Navigation Links */}
+        <nav className="hidden md:flex space-x-20">
+          <Link href="/SingleProduct" className="text-black hover:text-yellow-600 transition">
+            Home
+          </Link>
+          <Link href="/shop" className="text-black hover:text-yellow-600 transition">
+            Shop
+          </Link>
+          <Link href="/blog" className="text-black hover:text-yellow-600 transition">
+            Blog
+          </Link>
+          <Link href="/contact" className="text-black hover:text-yellow-600 transition">
+            Contact
+          </Link>
+        </nav>
+
+        {/* Icons Section */}
+        <div className="hidden md:flex justify-evenly items-center lg:space-x-16">
+          <button className="hover:text-yellow-600">
+            <Image src="/men.jpg" alt="User" width={20} height={20} />
+          </button>
+          <button className="hover:text-yellow-600">
+            <Image src="/search.png" alt="Search" width={20} height={20} />
+          </button>
+          <button className="hover:text-yellow-600">
+            <Image src="/heart.jpg" alt="Wishlist" width={20} height={20} />
+          </button>
+          <Link href="/cart">
+            <Image src="/cart.jpg" alt="Cart" width={20} height={20} />
+          </Link>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden flex items-center text-black"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <AiOutlineMenu className="h-6 w-6" />
+        </button>
       </div>
-      <h1 className="font-bold text-[24px] lg:text-[34px] leading-tight">Furniro</h1>
-    </div>
 
-    {/* Links Section - Hidden on small screens */}
-    <ul className="hidden lg:flex gap-10">
-      <Link href={"/"} className="font-medium text-sm lg:text-base hover:text-gray-500">
-        Home
-      </Link>
-      <Link href={"/shop"} className="font-medium text-sm lg:text-base hover:text-gray-500">
-        Shop
-      </Link>
-      <Link href={"/"} className="font-medium text-sm lg:text-base hover:text-gray-500">
-        Blog
-      </Link>
-      <Link href={"/contact"} className="font-medium text-sm lg:text-base hover:text-gray-500">
-        Contact
-      </Link>
-    </ul>
-
-    {/* Icons Section */}
-    <div className="flex items-center gap-4">
-      <Image src={log} alt="logo" className="w-5 lg:w-6" />
-      <Image src={search} alt="search" className="w-5 lg:w-6" />
-      <Image src={heart} alt="heart" className="w-5 lg:w-6" />
-      <Image src={cart} alt="cart" className="w-5 lg:w-6" />
-    </div>
-
-    {/* Mobile Menu Trigger */}
-    <div className="lg:hidden">
-      <Sheet>
-        <SheetTrigger>
-          <GiHamburgerMenu className="text-2xl" />
-        </SheetTrigger>
-        <SheetContent>
-          <ul className="space-y-4">
-            <Link href={"/"}>
-              <li className="text-black font-bold text-xl">Home</li>
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <nav className="md:hidden bg-white border-t border-gray-200">
+          <div className="flex flex-col items-center space-y-4 py-4">
+            <Link href="/" className="text-black hover:text-yellow-600 transition" onClick={() => setIsMenuOpen(false)}>
+              Home
             </Link>
-            <Link href={"/shop"}>
-              <li className="text-black font-bold text-xl">Shop</li>
+            <Link href="/shop" className="text-black hover:text-yellow-600 transition" onClick={() => setIsMenuOpen(false)}>
+              Shop
             </Link>
-            <Link href={"/"}>
-              <li className="text-black font-bold text-xl">Blog</li>
+            <Link href="/blog" className="text-black hover:text-yellow-600 transition" onClick={() => setIsMenuOpen(false)}>
+              Blog
             </Link>
-            <Link href={"/contact"}>
-              <li className="text-black font-bold text-xl">Contact</li>
+            <Link href="/contact" className="text-black hover:text-yellow-600 transition" onClick={() => setIsMenuOpen(false)}>
+              Contact
             </Link>
-          </ul>
-          <div className="flex items-center justify-center gap-6 mt-6">
-            <Image src={log} alt="logo" className="w-6" />
-            <Image src={search} alt="search" className="w-6" />
-            <Image src={heart} alt="heart" className="w-6" />
-          <Link href={"/cart"}><AiOutlineShoppingCart className="w-6" /></Link>
+            <div className="flex flex-col items-center space-y-4">
+              <button className="hover:text-yellow-600" onClick={() => setIsMenuOpen(false)}>
+                <Image src="/user-icon.jpg" alt="User" width={20} height={20} />
+              </button>
+              <button className="hover:text-yellow-600" onClick={() => setIsMenuOpen(false)}>
+                <Image src="/search-icon.jpg" alt="Search" width={20} height={20} />
+              </button>
+              <button className="hover:text-yellow-600" onClick={() => setIsMenuOpen(false)}>
+                <Image src="/heart-icon.jpg" alt="Wishlist" width={20} height={20} />
+              </button>
+              <Link href="/cart" onClick={() => setIsMenuOpen(false)}>
+                <Image src="/cart-icon.jpg" alt="Cart" width={20} height={20} />
+              </Link>
+            </div>
           </div>
-        </SheetContent>
-      </Sheet>
-    </div>
-  </div>
-</div>
+        </nav>
+      )}
+    </header>
   );
 };
 
-export default Navbar;
+export default Header;

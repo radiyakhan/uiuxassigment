@@ -4,36 +4,60 @@ import pic1 from '../../public/Image-living room.jpg'
 import pic2 from '../../public/Mask Group.jpg'
 import pic3 from '../../public/Mask Group1.jpg'
 
-
-const Range = () => {
+const BrowseRange = () => {
   return (
-    <div className='mt-[150px] '>
-      <div className=' h-[76.71px] text-center'>
-        <h1 className='h-12 font-bold text-[32px] leading-48px'>
-            Browse The Range
-        </h1>
-        <p className='font-[400px] text-[20px] leading-[30px]'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <div className='flex flex-col justify-center mt-10 py-16'>
+      <div className='flex flex-col items-center justify-center'>
+        <h1 className='text-[#333333] font-bold text-2xl sm:text-3xl md:text-4xl'>Browse The Range</h1>
+        <p className='text-[#666666] text-sm sm:text-base mx-2 md:text-lg'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </div>
-      <div className='flex flex-wrap mt-14 gap-5 ml-[75px]'>
-        <div>
-        <Image src={pic1} alt='room'/>
-        <h1 className='h-[36px] mt-4 text-center font-[600] text-[24px] leading-[36px]'>Dining</h1>
+      <div className="flex flex-col sm:flex-row justify-center items-center py-12 gap-6 sm:gap-12">
+        {/* Card 1 */}
+        <div className="flex flex-col items-center justify-center bg-white p-4 w-full  sm:w-[300px] md:w-[381px]">
+          <div className="relative w-full h-[300px] sm:h-[400px] md:h-[480px] mb-4">
+            <Image
+              src="/Image-living room.jpg"
+              alt="Dinning Area Furniture"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-md"
+            />
+          </div>
+          <h3 className="text-lg text-[#333333] font-semibold">Dinning</h3>
         </div>
-        <div>
-        <Image src={pic2} alt='room'/>
-        <h1 className='text-center mt-4 h-[36px] font-[600] text-[24px] leading-[36px]'>
-            Living
-        </h1>
+
+        {/* Card 2 */}
+        <div className="flex flex-col justify-center items-center bg-white p-4 w-full sm:w-[300px] md:w-[381px]">
+          <div className="relative w-full h-[300px] sm:h-[400px] md:h-[480px] mb-4">
+            <Image
+              src="/Mask Group.jpg"
+              alt="Living Room Furniture"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-md"
+            />
+          </div>
+          <h3 className="text-lg text-[#333333] font-semibold">Living</h3>
         </div>
-        <div>
-        <Image src={pic3} alt='room'/>
-        <h1 className='text-center mt-4 h-[36px] font-[600] text-[24px] leading-[36px]'>Bedroom</h1>
+
+        {/* Card 3 */}
+        <div className="flex flex-col items-center justify-center bg-white p-4 w-full sm:w-[300px] md:w-[381px]">
+          <div className="relative w-full h-[300px] sm:h-[400px] md:h-[480px] mb-4">
+            <Image
+              src="/Mask Group1.jpg"
+              alt="Bedroom Furniture"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-md"
+            />
+          </div>
+          <h3 className="text-lg text-[#333333] font-semibold">Bedroom</h3>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Range 
+export default BrowseRange;

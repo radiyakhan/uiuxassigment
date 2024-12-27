@@ -1,128 +1,169 @@
-import React from 'react'
-import pic1 from '../../public/sylthe.jpg'
-import pic2 from '../../public/chair.jpg'
-import pic3 from '../../public/sofa.jpg'
-import pic4 from '../../public/room.jpg'
-import pic5 from '../../public/lamp.jpg'
-import pic6 from '../../public/muggo.jpg'
-import pic7 from '../../public/sofaset.jpg'
-import pic8 from '../../public/potty.jpg'
-import Image from 'next/image'
+import React from "react";
+import Image from "next/image";
+import { IoShareSocialSharp } from "react-icons/io5";
+import { GoArrowSwitch } from "react-icons/go";
+import { FaHeart } from "react-icons/fa";
 
 
-const Product = () => {
+
+type Product = {
+  id: number;
+  name: string;
+  description: string;
+  price: { new: number; old?: number };
+  image: string;
+  discount?: string;
+  isNew?: boolean;
+};
+
+// Array of Products
+const products: Product[] = [
+  {
+    id: 1,
+    name: "Syltherine",
+    description: "Stylish cafe chair",
+    price: { new: 2500000, old: 3500000 },
+    image: "/sylthe.jpg",
+    discount: "30%",
+  },
+  {
+    id: 2,
+    name: "Leviosa",
+    description: "Stylish cafe chair",
+    price: { new: 2500000 },
+    image: "/chair.jpg",
+  },
+  {
+    id: 3,
+    name: "Lolito",
+    description: "Luxury big sofa",
+    price: { new: 7500000, old: 14000000 },
+    image: "/sofa.jpg",
+    discount: "50%",
+  },
+  {
+    id: 4,
+    name: "Respira",
+    description: "Outdoor bar table and stool",
+    price: { new: 5000000 },
+    image: "/room.jpg",
+    isNew: true,
+  },
+  {
+    id: 5,
+    name: "Grifo",
+    description: "Night lamp",
+    price: { new: 1500000 },
+    image: "/lamp.jpg",
+  },
+  {
+    id: 6,
+    name: "Muggo",
+    description: "Small mug",
+    price: { new: 150000 },
+    image: "/muggo.jpg",
+    isNew: true,
+  },
+  {
+    id: 7,
+    name: "Pingky",
+    description: "Cute bed set",
+    price: { new: 7000000, old: 14000000 },
+    image: "/sofaset.jpg",
+    discount: "50%",
+  },
+  {
+    id: 8,
+    name: "Potty",
+    description: "Minimalist flower pot",
+    price: { new: 500000 },
+    image: "/potty.jpg",
+    isNew: true,
+  },
+];
+
+const Product: React.FC = () => {
+  const formatPrice = (price: number) => {
+    // Convert number to string and format it as X.XX.XXX
+    const priceStr = price.toString();
+    const formatted = priceStr.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+    return formatted;
+  };
+
   return (
-    <div className='mt-14 ml-24'>
-      <div>
-        <h1 className='text-center pb-10 font-bold text-[40px] leading-[48px]'>
-            Our Products
-        </h1>
-      </div>
-      <div className="flex flex-wrap gap-[30px] items-center w-full">
-        <div className="card bg-base-100 gap-4 bg-graay h-[390px] w-[270px]">
-          <Image src={pic1} alt="game" className="" />
-          <div className="gap-3 ml-2 w-[201px] h-6 ">
-          <h2 className=" text-[28px] mt-2 leading-[28.8px] font-semibold">Syltherine</h2>
-            <h2 className='font-[500px] mt-2 text-graay2 text-base'>Stylish cafe chair</h2>
-            <div className='flex w-[502px] gap-5 h-6'>
-                <h2 className='font-semibold leading-[30px] text-[20px]'>Rp 2.500.000</h2>
-                <h2 className='font-[400px] text-base text-graay3 line-through'>Rp 3.500.000</h2>
-            </div>
-            
-          </div>
-        </div>
-        <div className="card bg-base-100 gap-4 bg-graay h-[390px] w-[270px]">
-          <Image src={pic2} alt="chair" className="" />
-          <div className="gap-3 ml-2  w-[201px] h-6 ">
-          <h2 className=" text-[28px] mt-2 leading-[28.8px] font-semibold">Leviosa</h2>
-            <h2 className='font-[500px] mt-2 text-graay2 text-base'>Stylish cafe chair</h2>
-            <div className='flex w-[502px] gap-5 h-6'>
-                <h2 className='font-semibold leading-[30px] text-[20px]'>Rp 2.500.000</h2>
-                
-            </div>
-            
-          </div>
-        </div>
-        <div className="card bg-base-100 gap-4 bg-graay h-[390px] w-[270px]">
-          <Image src={pic3} alt="sofa" className="" />
-          <div className="gap-3 ml-2 w-[201px] h-6 ">
-          <h2 className=" text-[28px] mt-2 leading-[28.8px] font-semibold">Lolito</h2>
-            <h2 className='font-[500px] mt-2 text-graay2 text-base'>Luxury big sofa</h2>
-            <div className='flex w-[502px] gap-5 h-6'>
-                <h2 className='font-semibold leading-[30px] text-[20px]'>Rp 7.000.000</h2>
-                <h2 className='font-[400px] text-base text-graay3 line-through'>Rp 14.000.000</h2>
-            </div>
-            
-          </div>
-        </div>
-        <div className="card bg-base-100 bg-graay h-[390px] gap-4 w-[270px]">
-          <Image src={pic4} alt="keyboard" className="" />
-          <div className="gap-3 ml-2 w-[] h-6 ">
-          <h2 className=" text-[28px] mt-2 leading-[28.8px] font-semibold">Respira</h2>
-            <h2 className='font-[500px] mt-2 text-graay2 text-base'>Outdoor bar table</h2>
-            <div className='flex w-[] gap-5 h-6'>
-                <h2 className='font-semibold leading-[30px] text-[20px]'>Rp 2.500.000</h2>
-               
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-wrap mt-12 gap-[30px] items-center w-full">
-        <div className="card bg-base-100 gap-4 bg-graay h-[390px] w-[270px]">
-          <Image src={pic5} alt="lamp" className="" />
-          <div className="gap-3 ml-2 w-[201px] h-6 ">
-          <h2 className=" text-[28px] mt-2 leading-[28.8px] font-semibold">Grifo</h2>
-            <h2 className='font-[500px] mt-2 text-graay2 text-base'>Night lamp</h2>
-            <div className='flex w-[502px] gap-5 h-6'>
-                <h2 className='font-semibold leading-[30px] text-[20px]'>Rp 1.500.000</h2>
-               
-            </div>
-            
-          </div>
-        </div>
-        <div className="card bg-base-100 gap-4 bg-graay h-[390px] w-[270px]">
-          <Image src={pic6} alt="mug" className="" />
-          <div className="gap-3 ml-2  w-[201px] h-6 ">
-          <h2 className=" text-[28px] mt-2 leading-[28.8px] font-semibold">Muggo</h2>
-            <h2 className='font-[500px] mt-2 text-graay2 text-base'>Small mug</h2>
-            <div className='flex w-[502px] gap-5 h-6'>
-                <h2 className='font-semibold leading-[30px] text-[20px]'>Rp 150.000</h2>
-                
-            </div>
-            
-          </div>
-        </div>
-        <div className="card bg-base-100 gap-4 bg-graay h-[390px] w-[270px]">
-          <Image src={pic7} alt="game" className="" />
-          <div className="gap-3 ml-2 w-[201px] h-6 ">
-          <h2 className=" text-[28px] mt-2 leading-[28.8px] font-semibold">Pingky</h2>
-            <h2 className='font-[500px] mt-2 text-graay2 text-base'>Cute bed set</h2>
-            <div className='flex w-[502px] gap-5 h-6'>
-                <h2 className='font-semibold leading-[30px] text-[20px]'>Rp 7.000.000</h2>
-                <h2 className='font-[400px] text-base text-graay3 line-through'>Rp 14.000.000</h2>
-            </div>
-            
-          </div>
-        </div>
-        <div className="card bg-base-100 bg-graay h-[390px] gap-4 w-[270px]">
-          <Image src={pic8} alt="keyboard" className="" />
-          <div className="gap-3 ml-2 w-[] h-6 ">
-          <h2 className=" text-[28px] mt-2 leading-[28.8px] font-semibold">Potty</h2>
-            <h2 className='font-[500px] mt-2 text-graay2 text-base'>Minimalist flower pot</h2>
-            <div className='flex w-[] gap-5 h-6'>
-                <h2 className='font-semibold leading-[30px] text-[20px]'>Rp 500.000</h2>
-               
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      <button className='w-[245px] h-[48px] border-[1px] border-brown mt-8 lg:ml-[550px] font-semibold text-base text-brown'>
-        Show More
-      </button>
-    </div>
-  )
-}
+    <div className="p-0">
+      <h1 className="text-3xl font-bold text-center mb-8">Our Products</h1>
+      <div className="px-6 sm:px-12 lg:px-24 justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="relative bg-white border p-4 group hover:bg-gray-300 transition-colors mx-auto w-full max-w-[270px] h-auto overflow-hidden"
+          >
+            {/* Discount or New Tag */}
+            {(product.discount || product.isNew) && (
+              <div
+                className={`absolute top-2 right-2 px-2 py-1 text-white text-sm font-bold rounded-full ${
+                  product.discount ? "bg-red-500" : "bg-green-500"
+                }`}
+              >
+                {product.discount || "NEW"}
+              </div>
+            )}
 
-export default Product
+            {/* Product Image */}
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={301}
+              height={301}
+              className="w-full h-[301px] object-cover mb-4"
+            />
+
+            {/* Product Info */}
+            <h2 className="text-xl text-[#3A3A3A] font-semibold mb-2">{product.name}</h2>
+            <p className="text-gray-700 text-sm mb-2">{product.description}</p>
+            <div className="text-sm font-medium mb-4">
+              <span className="text-[#3A3A3A] font-semibold">
+                Rp{formatPrice(product.price.new)}
+              </span>
+              {!(product.isNew || product.discount) && product.price.old && (
+                <span className="line-through text-gray-500 ml-2">
+                  Rp{formatPrice(product.price.old)}
+                </span>
+              )}
+            </div>
+
+            {/* Hover Options */}
+            <div className="absolute inset-0 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-transform duration-200 ease-in-out">
+              {/* Add to Cart Button */}
+              <button className="bg-white text-yellow-600 font-bold py-2 px-4 rounded shadow mb-2 hover:shadow-lg hover:bg-graay transition-shadow">
+                Add to Cart
+              </button>
+              {/* Icons Row */}
+              <div className="flex justify-center space-x-2 text-white text-sm mt-2">
+                <button className="hover:text-black flex items-center">
+                  <IoShareSocialSharp /> Share
+                </button>
+                <button className="hover:text-black flex items-center">
+                  <GoArrowSwitch /> Compare
+                </button>
+                <button className="hover:text-black flex items-center">
+                  <FaHeart />
+                  Like
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Button to show more Products */}
+      <div className="text-center mt-6">
+        <button className="bg-white text-[#B88E2F] border border-[#B88E2F] font-bold py-3 px-16 hover:bg-lime-200 transition-colors">
+          Show More
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Product;
