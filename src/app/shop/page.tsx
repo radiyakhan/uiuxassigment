@@ -5,6 +5,7 @@ import { GoArrowSwitch, GoVerified } from "react-icons/go";
 import { FaHeart } from "react-icons/fa";
 import { HiMiniAdjustmentsHorizontal, HiOutlineTrophy } from "react-icons/hi2";
 import { BsFillGridFill, BsViewList } from "react-icons/bs";
+import Link from "next/link";
 
 type Product = {
   id: number;
@@ -138,6 +139,7 @@ const Shop = () => {
               )}
 
               {/* Product Image */}
+              
               <Image
                 src={product.image}
                 alt={product.name}
@@ -164,11 +166,14 @@ const Shop = () => {
                 )}
               </div>
               {/* Hover Options - Fixed Visibility */}
+              <Link href={'/SingleProduct'}>
               <div className="absolute inset-0 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-transform duration-200 ease-in-out">
                 {/* Add to Cart Button */}
+                <Link href={'/cart'}>
                 <button className="bg-white text-yellow-600 font-bold py-2 px-4 rounded shadow mb-2 hover:shadow-lg hover:bg-green-500 transition-shadow">
                   Add to Cart
                 </button>
+                </Link>
                 {/* Icons Row */}
                 <div className="flex justify-center space-x-2 text-white text-sm mt-2">
                   <button className="hover:text-black flex items-center">
@@ -183,6 +188,7 @@ const Shop = () => {
                   </button>
                 </div>
               </div>
+              </Link>
             </div>
           ))
         )}
