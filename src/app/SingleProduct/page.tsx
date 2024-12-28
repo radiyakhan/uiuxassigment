@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { FaChevronRight, FaFacebook, FaLinkedin } from "react-icons/fa";
 
-const page = () => {
+const Page = () => {
   const [count, setCount] = useState(1);
 
   const increment = () => setCount(count + 1);
@@ -198,4 +198,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
