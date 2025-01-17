@@ -246,3 +246,7 @@ export default function Comparison() {
     </div>
   );
 }
+
+import React from 'react'
+
+
