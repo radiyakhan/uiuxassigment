@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { IoShareSocialSharp } from "react-icons/io5";
-import { GoArrowSwitch, GoVerified } from "react-icons/go";
+import { GoArrowSwitch } from "react-icons/go";
 import { FaHeart } from "react-icons/fa";
-import { HiMiniAdjustmentsHorizontal, HiOutlineTrophy } from "react-icons/hi2";
+import { HiMiniAdjustmentsHorizontal } from "react-icons/hi2";
 import { BsFillGridFill, BsViewList } from "react-icons/bs";
 import Link from "next/link";
 import CustomerCare from "@/components/customer-care";

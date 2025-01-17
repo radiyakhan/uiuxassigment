@@ -1,10 +1,6 @@
-import Image from "next/image";
 import React from "react";
-import bg from "../../../public/shop.png";
 import { FaClock, FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
-import { GoVerified } from "react-icons/go";
-import { HiOutlineTrophy } from "react-icons/hi2";
 import CustomerCare from "@/components/customer-care";
 import Banner from "@/components/banner";
 

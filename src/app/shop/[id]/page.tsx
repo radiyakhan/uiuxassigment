@@ -3,11 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { AiFillTwitterCircle } from "react-icons/ai";
-import { FaChevronRight, FaFacebook, FaHeart, FaLinkedin } from "react-icons/fa";
+import { FaChevronRight, FaFacebook, FaLinkedin } from "react-icons/fa";
 import sofa from '../../../../public/sofa-set.jpg'
 import products  from "../../../../Data/data";
-import { IoShareSocialSharp } from "react-icons/io5";
-import { GoArrowSwitch } from "react-icons/go";
 interface Paramst {
     params: {
         id: string;
