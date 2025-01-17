@@ -86,7 +86,7 @@ const Header = () => {
                           </div>
                         </div>
                         <div className='mt-7 ml-8 text-xl cursor-pointer'>
-                        <RxCrossCircled />
+                        <RxCrossCircled className='hover:text-red-600' />
                         </div>
                       </div>
                       <div className='flex mt-4 gap-4'>
@@ -107,8 +107,8 @@ const Header = () => {
                             </h1>
                           </div>
                         </div>
-                        <div className='mt-7 ml-8 text-xl cursor-pointer'>
-                        <RxCrossCircled />
+                        <div className='mt-7 ml-8 text-xl cursor-pointer' >
+                        <RxCrossCircled className='hover:text-red-600' />
                         </div>
                       </div>
                     </div>
