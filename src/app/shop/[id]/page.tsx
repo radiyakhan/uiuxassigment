@@ -11,7 +11,7 @@ interface Paramst {
         id: string;
     }
 }
-const page = ({params} : Paramst) => {
+const Page = ({params} : Paramst) => {
     const paramsd = Number(params.id)
     const find = products.find((items)=> items.id === paramsd)
   const [count, setCount] = useState(1);
@@ -230,4 +230,4 @@ const page = ({params} : Paramst) => {
   );
 };
 
-export default page;
+export default Page;
