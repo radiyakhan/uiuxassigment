@@ -1,8 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { IoShareSocialSharp } from "react-icons/io5";
-import { GoArrowSwitch } from "react-icons/go";
-import { FaHeart } from "react-icons/fa";
 import { HiMiniAdjustmentsHorizontal } from "react-icons/hi2";
 import { BsFillGridFill, BsViewList } from "react-icons/bs";
 import Link from "next/link";
