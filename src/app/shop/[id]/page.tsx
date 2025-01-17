@@ -14,7 +14,6 @@ interface Paramst {
 const page = ({params} : Paramst) => {
     const paramsd = Number(params.id)
     const find = products.find((items)=> items.id === paramsd)
-const Page = () => {
   const [count, setCount] = useState(1);
 
   const increment = () => setCount(count + 1);
@@ -229,6 +228,6 @@ const Page = () => {
       </div>
     </div>
   );
-}};
+};
 
 export default page;
