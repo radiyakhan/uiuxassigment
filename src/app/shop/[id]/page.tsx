@@ -16,8 +16,6 @@ const Page = ({params} : Paramst) => {
     const find = products.find((items)=> items.id === paramsd)
   const [count, setCount] = useState(1);
 
-  const increment = () => setCount(count + 1);
-  const decrement = () => count > 0 && setCount(count - 1);
   const relatedImages = [
     "/Product-1.png",
     "/product-2.png",
