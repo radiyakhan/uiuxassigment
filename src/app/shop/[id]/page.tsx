@@ -3,9 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { AiFillTwitterCircle } from "react-icons/ai";
-import { FaChevronRight, FaFacebook, FaLinkedin } from "react-icons/fa";
+import { FaChevronRight, FaFacebook, FaHeart, FaLinkedin } from "react-icons/fa";
+import sofa from '../../../../public/sofa-set.jpg'
+import products  from "../../../../Data/data";
+import { IoShareSocialSharp } from "react-icons/io5";
+import { GoArrowSwitch } from "react-icons/go";
+interface Paramst {
+    params: {
+        id: string;
+    }
+}
 
-const page = () => {
+const page = ({params} : Paramst) => {
+    const paramsd = Number(params.id)
+    const find = products.find((items)=> items.id === paramsd)
   const [count, setCount] = useState(1);
 
   const increment = () => setCount(count + 1);
@@ -34,7 +45,7 @@ const page = () => {
           </div>
           <div className="border-l items-center h-[40px] w-[120px] flex justify-end border-gray-700 pt-2 lg:pt-0">
             <p className="text-sm md:text-base text-center lg:text-left">
-              Asgaard sofa
+            {find?.title}
             </p>
           </div>
         </div>
@@ -61,7 +72,7 @@ const page = () => {
           </div>
           <div className="lg:h-[415px] lg:w-[423px] bg-[#F9F1E7] flex justify-center items-center rounded-xl">
             <Image
-              src="/Asgaard sofa 3.png"
+              src={find?.image || './'}
               alt="Single Product Image"
               className="rounded-lg"
               height={391}
@@ -70,10 +81,10 @@ const page = () => {
           </div>
           <div className="h-auto lg:ml-10 flex flex-col gap-1">
             <h2 className="font-semibold text-[42px]/[63px]">
-              Asgaard sofa
+              {find?.title}
             </h2>
             <p className="text-[#9F9F9F] font-poppins font-medium text-2xl">
-              Rs. 250,000.00
+              Rs.{find?.price}
             </p>
 
             {/* Reviews and Description */}
@@ -86,10 +97,7 @@ const page = () => {
               </div>
             </div>
             <p className="text-sm lg:w-[500px] font-poppins text-[#9F9F9F]">
-              Setting the bar as one of the loudest speakers in its class, the
-              Kilburn is a compact, stout-hearted hero with a well-balanced
-              audio which boasts a clear midrange and extended highs for a
-              sound.
+              {find?.description}
             </p>
 
             {/* Size Selection */}
@@ -144,7 +152,7 @@ const page = () => {
                   Add To Cart
                 </button>
               </Link>
-              <Link href="/product-comparison">
+              <Link href="/product-comparision">
                 <button
                   type="button"
                   className="h-16 w-[215px] border-2 border-black rounded-2xl flex items-center justify-center"
@@ -185,7 +193,10 @@ const page = () => {
                 <ul className="flex gap-4">
                     <li>SKU</li>
                     <li>:</li>
-                    <li className="flex gap-6 text-2xl text-black"><FaFacebook /> <FaLinkedin /> <AiFillTwitterCircle />
+                    <li className="flex gap-6 text-2xl text-black">
+                      <Link href={'https://www.facebook.com/profile.php?id=100083278800324&mibextid=ZbWKwL'} target='_blank'><FaFacebook /></Link> 
+                      <Link href={'"https://www.linkedin.com/in/radiya-khan-133b112ba'} target="_blank"><FaLinkedin /></Link> 
+                      <AiFillTwitterCircle />
                     </li>
                   </ul>
                 </div>
@@ -193,6 +204,30 @@ const page = () => {
             </div>
           </div>
         </div>
+      </div>
+      {/* line */}
+      <Image src={'/line 8.png'} alt="line" width={5} height={5} className="mt-16 w-full"/>
+      {/* discription */}
+      <div>
+        <div className="lg:flex gap-12 mt-12 justify-center mb-6 ml-5">
+          <h1 className="text-[24px] leading-[36px] font-medium">Description</h1>
+          <h1 className="text-[24px] leading-[36px] font-[400] text-graay3">Additional Information</h1>
+          <h1 className="text-[24px] leading-[36px] font-[400] text-graay3">Review[5]</h1>
+        </div>
+        <div className="flex-col justify-center font-[400] lg:text-base text-sm text-[#9F9F9F] lg:px-[220px] px-5">
+          <p >
+          Embodying the raw, wayward spirit of rock n roll, the Kilburn portable active stereo speaker takes the unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.
+          </p>
+          <br/>
+          <p>
+          Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.
+          </p>
+        </div>
+          <div className="mt-5 lg:ml-20 lg:flex px-2 gap-4">
+            <Image src={sofa} alt="sofa set" className="w-[600px] mb-2 "/>
+            <Image src={sofa} alt="sofa set" className="w-[600px]"/>
+          </div>
+          
       </div>
     </div>
   );

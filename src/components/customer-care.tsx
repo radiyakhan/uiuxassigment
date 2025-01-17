@@ -1,5 +1,7 @@
 
 import Image from "next/image";
+import { GoVerified } from "react-icons/go";
+import { HiOutlineTrophy } from "react-icons/hi2";
 
 export default function CustomerCare() {
   return (
@@ -7,7 +9,7 @@ export default function CustomerCare() {
       <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
         {/* High Quality */}
         <div className="h-auto lg:h-[70px] w-full sm:w-[337px] flex items-center gap-2">
-          <Image src={"/trophy.png"} alt="Quality" height={60} width={60} />
+          < HiOutlineTrophy className="w-12 h-12 text-gray-800"/>
           <div>
             <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
               High Quality
@@ -20,7 +22,7 @@ export default function CustomerCare() {
 
         {/* Warranty Protection */}
         <div className="h-auto lg:h-[70px] w-full sm:w-[338px] flex items-center gap-2">
-          <Image src={"/guarantee.png"} alt="Warranty" height={60} width={60} />
+          <GoVerified className="w-12 h-12 text-gray-800" />
           <div>
             <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
               Warranty Protection
@@ -34,7 +36,7 @@ export default function CustomerCare() {
         {/* Free Shipping */}
         <div className="h-auto lg:h-[70px] w-full sm:w-[244px] flex items-center gap-2">
           <Image
-            src={"/shipping.png"}
+            src={"/hand.png"}
             alt="Free Shipping"
             height={60}
             width={60}
@@ -52,7 +54,7 @@ export default function CustomerCare() {
         {/* 24/7 Support */}
         <div className="h-auto lg:h-[70px] w-full sm:w-[249px] flex items-center gap-2">
           <Image
-            src={"/customer-support.png"}
+            src={"/head.png"}
             alt="Customer Support"
             height={60}
             width={60}

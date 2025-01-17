@@ -5,24 +5,14 @@ import { FaClock, FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { GoVerified } from "react-icons/go";
 import { HiOutlineTrophy } from "react-icons/hi2";
+import CustomerCare from "@/components/customer-care";
+import Banner from "@/components/banner";
 
 const page = () => {
   return (
     <div>
   {/* Background Section */}
-  <div className="relative w-full h-[400px]">
-    <Image
-      src={bg}
-      alt="Shop Background"
-      layout="fill"
-      objectFit="cover"
-      className="absolute inset-0"
-    />
-    <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-black">
-      <p className="font-medium text-3xl sm:text-4xl md:text-5xl">Contact</p>
-      <h1 className="font-light text-sm sm:text-base mt-2">Home &gt; Contact</h1>
-    </div>
-  </div>
+   <Banner name="Contact" title="Contact" logo="/logo.png" />
 
   {/* Contact Section */}
   <div className="flex flex-wrap justify-center gap-16 px-4 py-10">
@@ -115,71 +105,7 @@ const page = () => {
   </div>
 
   {/* Features Section */}
-  <div className="h-auto lg:h-[270px] flex flex-col lg:flex-row items-center justify-center bg-[#FAF3EA] px-4 py-6">
-              <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
-                {/* High Quality */}
-                <div className="h-auto lg:h-[70px] w-full sm:w-[337px] flex items-center gap-2">
-                  <HiOutlineTrophy className="w-12 h-12 text-gray-800" />
-                  <div>
-                    <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
-                      High Quality
-                    </h2>
-                    <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
-                      crafted from top materials
-                    </p>
-                  </div>
-                </div>
-        
-                {/* Warranty Protection */}
-                <div className="h-auto lg:h-[70px] w-full sm:w-[338px] flex items-center gap-2">
-                  <GoVerified className="w-12 h-12 text-gray-800" />
-                  <div>
-                    <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
-                      Warranty Protection
-                    </h2>
-                    <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
-                      Over 2 years
-                    </p>
-                  </div>
-                </div>
-        
-                {/* Free Shipping */}
-                <div className="h-auto lg:h-[70px] w-full sm:w-[244px] flex items-center gap-2">
-                  <Image
-                    src={"/hand.png"}
-                    alt="Free Shipping"
-                    height={60}
-                    width={60}
-                  />
-                  <div>
-                    <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
-                      Free Shipping
-                    </h2>
-                    <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
-                      Order over 150 $
-                    </p>
-                  </div>
-                </div>
-        
-                {/* 24/7 Support */}
-                <div className="h-auto lg:h-[70px] w-full sm:w-[249px] flex items-center gap-2">
-                  <Image
-                    src={"/head.png"}
-                    alt="Customer Support"
-                    height={60}
-                    width={60}
-                  />
-                  <div>
-                    <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
-                      24 / 7 Support
-                    </h2>
-                    <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
-                      Dedicated support
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <CustomerCare/>
 </div>
   );
 };

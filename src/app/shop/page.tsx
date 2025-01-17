@@ -5,6 +5,9 @@ import { GoArrowSwitch, GoVerified } from "react-icons/go";
 import { FaHeart } from "react-icons/fa";
 import { HiMiniAdjustmentsHorizontal, HiOutlineTrophy } from "react-icons/hi2";
 import { BsFillGridFill, BsViewList } from "react-icons/bs";
+import Link from "next/link";
+import CustomerCare from "@/components/customer-care";
+import Banner from "@/components/banner";
 
 type Product = {
   id: number;
@@ -49,6 +52,37 @@ const products: Product[] = [
     image: "/room.jpg",
     isNew: true,
   },
+  {
+    id: 5,
+    name: "Grifo",
+    description: "Night lamp",
+    price: { new: 1500000 },
+    image: "/lamp.jpg",
+  },
+  {
+    id: 6,
+    name: "Muggo",
+    description: "Small mug",
+    price: { new: 150000 },
+    image: "/muggo.jpg",
+    isNew: true,
+  },
+  {
+    id: 7,
+    name: "Pingky",
+    description: "Cute bed set",
+    price: { new: 7000000, old: 14000000 },
+    image: "/sofaset.jpg",
+    discount: "50%",
+  },
+  {
+    id: 8,
+    name: "Potty",
+    description: "Minimalist flower pot",
+    price: { new: 500000 },
+    image: "/potty.jpg",
+    isNew: true,
+  },
 ];
 
 const Shop = () => {
@@ -62,19 +96,7 @@ const Shop = () => {
   return (
     <div className="min-h-screen">
       {/* Header Section */}
-      <div
-        className="bg-white py-6 shadow-md w-full h-[316px] items-center space-y-6"
-        style={{
-          backgroundImage: `url('/shop.png')`,
-        }}
-      >
-        <div className="container mx-auto flex flex-col items-center py-20">
-          <div className="text-center space-y-3">
-            <h1 className="text-4xl font-semibold">Shop</h1>
-            <p className="text-sm text-black">Home &gt; Shop</p>
-          </div>
-        </div>
-      </div>
+      <Banner name="Shop" title="Shop" logo="/logo.png" />
       {/* Filter Section */}
       <div className="flex flex-col items-center bg-peach py-10">
         <div className="flex justify-between items-center w-full h-2 max-w-4xl p-4">
@@ -120,7 +142,7 @@ const Shop = () => {
 
       {/* Product Grid */}
       <div className="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {Array.from({ length: 4 }).map((_, rowIndex) =>
+        {Array.from({ length: 3 }).map((_, rowIndex) =>
           products.map((product) => (
             <div
               key={`${rowIndex}-${product.id}`}
@@ -138,50 +160,33 @@ const Shop = () => {
               )}
 
               {/* Product Image */}
-              <Image
-                src={product.image}
-                alt={product.name}
-                width={270} // Adjust based on your image dimensions
-                height={301} // Adjust based on your image dimensions
-                className="w-full h-[301px] object-cover mb-4"
-              />
-
+              
+              <Link href={`/shop/${product.id}`}>
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={270} // Adjust based on your image dimensions
+                  height={301} // Adjust based on your image dimensions
+                  className="w-full h-[301px] object-cover mb-4"
+                />
+              </Link>
               {/* Product Info */}
-              <h2 className="text-xl text-[#3A3A3A] font-semibold mb-2">
+             <Link href={`/shop/${product.id}`}>
+             <h2 className="text-xl text-[#3A3A3A] font-semibold mb-2">
                 {product.name}
-              </h2>
+              </h2></Link>
               <p className="text-gray-700 text-sm mb-2">
                 {product.description}
               </p>
               <div className="text-sm font-medium mb-4">
                 <span className="text-[#3A3A3A] font-semibold">
-                  Rp{formatPrice(product.price.new)}
+                  Rs. {formatPrice(product.price.new)}
                 </span>
                 {product.price.old && (
                   <span className="line-through text-gray-500 ml-2">
                     Rp{formatPrice(product.price.old)}
                   </span>
                 )}
-              </div>
-              {/* Hover Options - Fixed Visibility */}
-              <div className="absolute inset-0 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-transform duration-200 ease-in-out">
-                {/* Add to Cart Button */}
-                <button className="bg-white text-yellow-600 font-bold py-2 px-4 rounded shadow mb-2 hover:shadow-lg hover:bg-green-500 transition-shadow">
-                  Add to Cart
-                </button>
-                {/* Icons Row */}
-                <div className="flex justify-center space-x-2 text-white text-sm mt-2">
-                  <button className="hover:text-black flex items-center">
-                    <IoShareSocialSharp /> Share
-                  </button>
-                  <button className="hover:text-black flex items-center">
-                    <GoArrowSwitch /> Compare
-                  </button>
-                  <button className="hover:text-black flex items-center">
-                    <FaHeart />
-                    Like
-                  </button>
-                </div>
               </div>
             </div>
           ))
@@ -195,71 +200,7 @@ const Shop = () => {
       </div>
 
       {/* Pagination */}
-     <div className="h-auto lg:h-[270px] flex flex-col lg:flex-row items-center justify-center bg-[#FAF3EA] px-4 py-6">
-                 <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
-                   {/* High Quality */}
-                   <div className="h-auto lg:h-[70px] w-full sm:w-[337px] flex items-center gap-2">
-                     <HiOutlineTrophy className="w-12 h-12 text-gray-800" />
-                     <div>
-                       <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
-                         High Quality
-                       </h2>
-                       <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
-                         crafted from top materials
-                       </p>
-                     </div>
-                   </div>
-           
-                   {/* Warranty Protection */}
-                   <div className="h-auto lg:h-[70px] w-full sm:w-[338px] flex items-center gap-2">
-                     <GoVerified className="w-12 h-12 text-gray-800" />
-                     <div>
-                       <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
-                         Warranty Protection
-                       </h2>
-                       <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
-                         Over 2 years
-                       </p>
-                     </div>
-                   </div>
-           
-                   {/* Free Shipping */}
-                   <div className="h-auto lg:h-[70px] w-full sm:w-[244px] flex items-center gap-2">
-                     <Image
-                       src={"/hand.png"}
-                       alt="Free Shipping"
-                       height={60}
-                       width={60}
-                     />
-                     <div>
-                       <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
-                         Free Shipping
-                       </h2>
-                       <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
-                         Order over 150 $
-                       </p>
-                     </div>
-                   </div>
-           
-                   {/* 24/7 Support */}
-                   <div className="h-auto lg:h-[70px] w-full sm:w-[249px] flex items-center gap-2">
-                     <Image
-                       src={"/head.png"}
-                       alt="Customer Support"
-                       height={60}
-                       width={60}
-                     />
-                     <div>
-                       <h2 className="text-[20px]/[30px] sm:text-[25px]/[37.5px] font-semibold font-poppins text-[#242424]">
-                         24 / 7 Support
-                       </h2>
-                       <p className="text-base/[24px] sm:text-xl/[30px] font-poppins font-medium text-[#898989]">
-                         Dedicated support
-                       </p>
-                     </div>
-                   </div>
-                 </div>
-               </div>
+      <CustomerCare />
     </div>
   );
 };

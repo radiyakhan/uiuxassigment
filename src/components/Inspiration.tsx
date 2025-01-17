@@ -1,62 +1,95 @@
-import React from "react";
-import room1 from "../../public/room1.jpg";
-import room2 from "../../public/room2.jpg";
-import Image from "next/image";
-import { IoArrowForwardOutline } from "react-icons/io5";
-import { IoIosArrowForward } from "react-icons/io";
-import { GoDotFill } from "react-icons/go";
+"use client"
 
-const Inspiration = () => {
+import Image from "next/image";
+
+import Image1 from "../../public/room1.jpg";
+import Image2 from "../../public/room2.jpg";
+import Image3 from "../../public/room-3.png"
+import { useState } from "react";
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
+
+const Explore = () => {
+    const images = [
+        { src: Image1, title: "01 — Bed Room", subtitle: "Inner Peace" },
+        { src: Image2, title: "02 — Living Room", subtitle: "Relaxation" },
+        { src: Image3, title: "03 — Dining Room", subtitle: "Cozy Vibes" },
+        
+      ];
+    
+      const [currentIndex, setIndex] = useState(0);
+    
+      const handleNext = () => {
+        setIndex((preIndex) => (preIndex + 1) % images.length);
+      };
+    
+      const Previous = () => {
+        setIndex((preIndex) =>
+          preIndex === 0 ? images.length - 1 : preIndex - 1
+        );
+      };
+    
   return (
-    <div className="flex overflow-x-hidden flex-wrap mt-14 bg-bgpeach h-auto w-full lg:p-10 p-6">
-      <div className="flex-1 space-y-6">
-        <h1 className="font-bold mt-[130px] lg:text-[32px] md:text-[40px] lg:w-[422px] w-[200px] text-[20px] leading-tight text-gray-800">
+    <section className="max-w-[1440px] mx-auto px-8 sm:px-16 lg:px-24 my-16 bg-[#FCF8F3] p-8 shadow-md">
+    <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div className="flex flex-col items-center sm:items-start gap-4 lg:basis-[40%] text-center sm:text-left">
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#3A3A3A]">
           50+ Beautiful rooms inspiration
-        </h1>
-        <p className="font-medium lg:w-[368px]  lg:text-base text-gray-600 ">
-          Our designer already made a lot of beautiful prototypes of rooms that
-          inspire you.
+        </h2>
+        <p className="text-sm sm:text-base text-[#616161]">
+          Our designer already made a lot of beautiful prototypes of rooms
+          that inspire you
         </p>
-        <button className="w-[222px] h-[50px] bg-brown text-white text-base font-bold text-center rounded hover:bg-opacity-80 transition">
+        <button className="bg-[#B88E2F] hover:bg-[#b88f2ff8] rounded-sm py-2 px-6 sm:px-8 text-white text-sm sm:text-base font-semibold mt-4">
           Explore More
         </button>
       </div>
-      <div className="flex flex-wrap lg:justify-center mt-6 md:mt-0 space-x-3 relative">
-        <div className="relative lg:w-[400px] w-[250px] md:h-[582px]">
+
+      <div className="relative flex flex-col items-center lg:basis-[60%] w-full">
+        <div className="relative w-full">
           <Image
-            src={room1}
-            alt="Room 1"
-            className="rounded-lg object-cover w-[450px] h-full"
+            src={images[currentIndex].src}
+            alt={images[currentIndex].title}
+            className="rounded-md"
           />
-          <div className="absolute top-0  left-0 w-[217px] h-[130px] mt-[400px] ml-6 bg-white bg-opacity-55 ">
-            <p className="text-graay2 w-[182px] pt-7  pl-5 font-[500] text-base ">
-              01 — Bed Room
+          <div className="absolute bottom-6 left-6 opacity-80 bg-white p-8 rounded-sm shadow text-[#3A3A3A] z-[500]">
+            <p className="text-sm font-semibold">
+              {images[currentIndex].title}
             </p>
-            <p className="text-blackw-[168px] pl-5 mt-3 font-semibold text-[28px] leading-[33.6px]">
-              Inner Peace
-            </p>
-            <IoArrowForwardOutline className="bg-brown ml-[218px] text-white w-10 h-10 p-2 mt-[-9px]" />
+            <p className="text-sm">{images[currentIndex].subtitle}</p>
+          </div>
+          <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
+            <button
+              className="bg-white text-3xl cursor-pointer text-[#B88E2F] rounded-full shadow p-2"
+              onClick={Previous}
+            >
+              <IoIosArrowDropleft />
+            </button>
+          </div>
+          <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
+            <button
+              className="bg-white text-3xl cursor-pointer text-[#B88E2F] rounded-full shadow p-2"
+              onClick={handleNext}
+            >
+              <IoIosArrowDropright />
+            </button>
           </div>
         </div>
-        <div className="relative mt-6 w-[400px] md:h-[582px]">
-          <Image
-            src={room2}
-            alt="Room 2"
-            className="rounded-lg object-cover w-[290px] md:h-[486px]"
-          />
-          <div className="absolute  ">
-            <IoIosArrowForward className="bg-white ml-[268px] rounded-full w-10 h-10 p-2 mt-[-250px]" />
-          </div>
+
+        {/* Dots for Slider */}
+        <div className="flex gap-2 justify-center mt-4">
+          {images.map((_, index) => (
+            <span
+              key={index}
+              className={`w-3 h-3 rounded-full ${
+                index === currentIndex ? "bg-[#B88E2F]" : "bg-gray-300"
+              }`}
+            ></span>
+          ))}
         </div>
-      </div>
-      <div className="flex lg:ml-[870px] relative gap-1 sm:mt-3 lg:mt-[-60px] text-2xl">
-     <GoDotFill className="hover:text-brown hover:border hover:border-brown rounded-3xl text-graay2 "/>
-      <GoDotFill className="hover:text-brown hover:border hover:border-brown rounded-3xl text-graay2 "/>
-      <GoDotFill className="hover:text-brown hover:border hover:border-brown rounded-3xl text-graay2 "/>
-      <GoDotFill className="hover:text-brown hover:border hover:border-brown rounded-3xl text-graay2 "/>
       </div>
     </div>
-  );
-};
+  </section>
+  )
+}
 
-export default Inspiration;
+export default Explore

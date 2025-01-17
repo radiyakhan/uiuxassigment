@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa";
 
 interface BannerProps {
@@ -28,7 +29,7 @@ export default function Banner({ name, logo  ,title}: BannerProps) {
       </h1>
 
       <div className="flex items-center gap-2 mt-3 text-sm md:text-base">
-        <p className="font-poppins font-bold ">Home</p>
+        <Link href={'/'}><p className="font-poppins font-bold ">Home</p></Link>
         <FaChevronRight  />
         <p className="font-poppins font-light">{name}</p>
       </div>

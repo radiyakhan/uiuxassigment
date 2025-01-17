@@ -3,6 +3,7 @@ import Image from "next/image";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { GoArrowSwitch } from "react-icons/go";
 import { FaHeart } from "react-icons/fa";
+import Link from "next/link";
 
 
 
@@ -134,11 +135,12 @@ const Product: React.FC = () => {
             </div>
 
             {/* Hover Options */}
+            <Link href={'/SingleProduct'}>
             <div className="absolute inset-0 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-transform duration-200 ease-in-out">
               {/* Add to Cart Button */}
-              <button className="bg-white text-yellow-600 font-bold py-2 px-4 rounded shadow mb-2 hover:shadow-lg hover:bg-graay transition-shadow">
+              <Link href={'/cart'}><button className="bg-white text-yellow-600 font-bold py-2 px-4 rounded shadow mb-2 hover:shadow-lg hover:bg-graay transition-shadow">
                 Add to Cart
-              </button>
+              </button></Link>
               {/* Icons Row */}
               <div className="flex justify-center space-x-2 text-white text-sm mt-2">
                 <button className="hover:text-black flex items-center">
@@ -153,6 +155,7 @@ const Product: React.FC = () => {
                 </button>
               </div>
             </div>
+            </Link>
           </div>
         ))}
       </div>
