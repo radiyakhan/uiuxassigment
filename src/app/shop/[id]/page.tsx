@@ -5,6 +5,13 @@ import { FaChevronRight, FaFacebook, FaLinkedin } from "react-icons/fa";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import AddToCart from "@/components/addtocart";
+import products  from "../../../../Data/data";
+import { useState } from "react";
+interface Paramst {
+    params: {
+        id: string;
+    }
+}
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const data =
@@ -23,6 +30,15 @@ const Page = async ({ params }: { params: { id: string } }) => {
       isNew
     }`);
   console.log("Fetched Data:", data);
+
+
+
+const Page = ({params} : Paramst) => {
+  const [count, setCount] = useState(1);
+  const increment = () => setCount(count + 1);
+  const decrement = () => count > 0 && setCount(count - 1);
+    const paramsd = Number(params.id)
+    const find = products.find((items)=> items.id === paramsd) 
   const relatedImages = [
     "/Product-1.png",
     "/product-2.png",
@@ -252,6 +268,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
       ))}
     </div>
   );
-};
+}};
 
 export default Page;
