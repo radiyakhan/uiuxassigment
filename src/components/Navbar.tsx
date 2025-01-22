@@ -98,9 +98,9 @@ const Header = () => {
 
   return (
     <header className="bg-white sticky top-0 z-50 shadow-md">
-      <div className="container mx-auto flex items-center justify-between py-4 px-6">
+      <div className="container lg:ml-0 -ml-5 mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-[-5px]">
           <Image
             src="/logo.png"
             alt="Meubel House Logo"
@@ -141,7 +141,34 @@ const Header = () => {
             Contact
           </Link>
         </nav>
+        <div className="lg:hidden ml-8 mr-2">
+            <div className="flex items-center gap-[10px] px-[15px] py-[5px] border border-bordercoloryello rounded-2xl">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={handleSearch}
+                className="bg-transparent outline-none text-whitetext text-[14px] placeholder:text-whitetext w-full"
+              />
+              <IoSearch className="text-whitetext w-[20px] h-[20px]" />
+            </div>
 
+            {/* Dropdown for filtered products */}
+            {searchQuery && filteredProducts.length > 0 && (
+              <div className="absolute bg-white w-[100px] mt-1 border border-gray-300 rounded-md shadow-lg z-10">
+                <ul>
+                  {filteredProducts.map((product: any) => (
+                    <li
+                      key={product._id}
+                      className="px-4 py-2 text-black hover:bg-gray-200 cursor-pointer"
+                    >
+                      {product.title}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div> 
         {/* Icons Section */}
         <div className="hidden md:flex justify-evenly items-center space-x-16">
           <button className="hover:text-yellow-600">
@@ -182,7 +209,7 @@ const Header = () => {
             <div className="mb-7">
               <FaRegHeart className="text-2xl  cursor-pointer absolute" />
               {wishlist.length > 0 && (
-                <span className="absolute right-[86px] mt-[-5px] items-center justify-center px-[6px] w-5 h-5 text-xs font-bold text-brown bg-white border border-gray-300 rounded-full shadow-md">
+                <span className="absolute right-[123px] mt-[-5px] items-center justify-center px-[6px] w-5 h-5 text-xs font-bold text-brown bg-white border border-gray-300 rounded-full shadow-md">
                   {wishlist.reduce((total, item) => total + item.quantity, 0)}
                 </span>
               )}
