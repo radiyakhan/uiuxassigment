@@ -139,15 +139,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
                 </div>
 
                 <div>
-                  <div>
-                    <Image
-                      alt="line"
-                      src="/line 7.png"
-                      width={605.01}
-                      height={5}
-                      className="mt-16"
-                    />
-                  </div>
                   <div className="mt-9 flex flex-col gap-4 text-graay2">
                     <div>
                       <ul className="flex gap-4">
@@ -202,14 +193,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
           ))}
         </div>
       </div>
-      {/* line */}
-      <Image
-        src={"/line 8.png"}
-        alt="line"
-        width={5}
-        height={5}
-        className="mt-16 w-full"
-      />
+      
       {/* discription */}
       {data.map((product: any) => (
         <div key={product._id}>
