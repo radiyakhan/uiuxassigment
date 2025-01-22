@@ -532,11 +532,12 @@ export default function Product(){
         )}
       </div>
       {/* Button to show more Products */}
+       <Link href={'/shop'}>
       <div className="text-center mt-6">
-        <button className="bg-white text-[#B88E2F] border border-[#B88E2F] font-bold py-3 px-16 hover:bg-lime-200 transition-colors">
+        <button className="bg-white text-[#B88E2F] border hover:border-x-[3px] hover:border-y-[3px] border-[#B88E2F] font-bold py-3 px-16  transition-colors">
           Show More
         </button>
-      </div>
+      </div></Link>
     </div>
     </div>
   );
