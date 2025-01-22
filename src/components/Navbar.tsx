@@ -33,8 +33,9 @@ const Header = () => {
     calculateTotal(cart);
   }, []);
 
-  const calculateTotal = (items: CartItem[]) => {
-    
+  const calculateTotal = (cart: CartItem[]) => {
+    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    console.log("Total Price:", total);
   };
 
   const handleRemoveItem = (id: number) => {

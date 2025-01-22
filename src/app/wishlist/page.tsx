@@ -22,9 +22,9 @@ const Page = () => {
     calculateTotal(wishlist);
   }, []);
 
-  const calculateTotal = (items: WishItem[]) => {
-
-    
+  const calculateTotal = (cart: WishItem[]) => {
+    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    console.log("Total Price:", total);
   };
 
   const handleRemoveItem = (id: number) => {

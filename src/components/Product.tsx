@@ -400,8 +400,8 @@
 // };
 
 // export default Shop;
-
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
@@ -415,29 +415,39 @@ const formatPrice = (price: number) => {
   const formatted = priceStr.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
   return formatted;
 };
+export default function Product(){
 
-const Shop = async () => {
-  let products = [];
+  // let products = [];
+  const [products, setProducts] = useState<any[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const query = `*[_type == "product"] {
+          _id,
+          title,
+          "productImage": productImage.asset->url,
+          price,
+          tags,
+          discountPercentage,
+          isNew
+        }`;
+        const fetchedProducts = await client.fetch(query);
+        setProducts(fetchedProducts);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+        setError("Failed to fetch products. Please try again later.");
+      }
+    };
+    fetchProducts(); // Call the async function
+  }, []); // Empty dependency array to run only once on mount
 
-  try {
-    // Fetch products from Sanity
-    const query = `*[_type == "product"] {
-  _id,
-  title,
-  "productImage": productImage.asset->url,
-  price,
-  tags,
-  discountPercentage,
-  isNew
-}
-     
-    `;
-    products = await client.fetch(query);
-  } catch (error) {
-    console.error("Error fetching products:", error);
+  if (error) {
+    return <div>{error}</div>;
   }
   const topro = products.slice(0, 8)
   return (
+    <div>
     <div className="min-h-screen">
       <h1 className="text-3xl font-bold text-center mb-8">Our Products</h1>
 
@@ -528,7 +538,8 @@ const Shop = async () => {
         </button>
       </div>
     </div>
+    </div>
   );
 };
 
-export default Shop;
+
