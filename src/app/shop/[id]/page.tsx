@@ -7,9 +7,9 @@ import { urlFor } from "@/sanity/lib/image";
 import AddToCart from "@/components/addtocart"
 
 
-const Page = async ({ Params }: { Params: { id: string } }) => {
+const Page = async ({ params }: { params: { id: string } }) => {
   const data =
-    await client.fetch(`*[_type == "product" && _id == "${Params.id}"]{
+    await client.fetch(`*[_type == "product" && _id == "${params.id}"]{
     _id,
       title,
       description,
