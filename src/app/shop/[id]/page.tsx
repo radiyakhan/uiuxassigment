@@ -4,11 +4,16 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 import { FaChevronRight, FaFacebook, FaLinkedin } from "react-icons/fa";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-import AddToCart from "@/components/addtocart";
+import AddToCart from "@/components/addtocart"
+interface Paramst {
+    params: {
+        id: string;
+    }
+}
 
-const Page = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ Params }: { Params: { id: string } }) => {
   const data =
-    await client.fetch(`*[_type == "product" && _id == "${params.id}"]{
+    await client.fetch(`*[_type == "product" && _id == "${Params.id}"]{
     _id,
       title,
       description,
