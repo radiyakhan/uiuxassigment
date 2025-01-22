@@ -46,17 +46,20 @@ const page = () => {
 
     {/* Contact Form */}
     <div className="w-full lg:w-1/3 mt-14 lg:mt-0">
+    <form action="https://formspree.io/f/mwpveval"
+  method="POST">
       <div className="bg-white p-6 rounded-lg">
         <div className="mb-6">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
             Your Name
           </label>
           <input
-            type="text"
+            type="name"
             id="name"
             name="name"
             className="w-full border border-gray-300 rounded px-3 py-2 mt-1 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-400"
-            defaultValue={"Abc"}
+            placeholder={"Abc"}
+            required
           />
         </div>
         <div className="mb-6">
@@ -68,7 +71,8 @@ const page = () => {
             id="email"
             name="email"
             className="w-full border border-gray-300 rounded px-3 py-2 mt-1 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-400"
-            defaultValue={"Abc@def.com"}
+            placeholder={"Abc@def.com"}
+            required
           />
         </div>
         <div className="mb-6">
@@ -79,7 +83,8 @@ const page = () => {
             id="subject"
             name="subject"
             className="w-full border border-gray-300 rounded px-3 py-2 mt-1 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-400"
-            defaultValue={"This is an optional"}
+            placeholder={"This is an optional"}
+            required
           />
         </div>
         <div className="mb-6">
@@ -90,13 +95,15 @@ const page = () => {
             id="message"
             name="message"
             className="w-full border border-gray-300 rounded px-3 py-2 mt-1 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-400"
-            defaultValue={"Hi! I'd like to ask about"}
+            placeholder={"Hi! I'd like to ask about"}
+            required
           />
         </div>
         <button className="w-full bg-brown text-white py-2 px-4 rounded focus:outline-none focus:ring-1 focus:ring-gray-400">
           Submit
         </button>
       </div>
+      </form>
     </div>
   </div>
 

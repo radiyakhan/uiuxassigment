@@ -1,12 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Search } from "lucide-react";
-import laptop from "../../../public/post.png";
 import admin from "../../../public/admin.png";
 import date from "../../../public/calender.png";
 import tag from "../../../public/tag.png";
-import post from "../../../public/post-2.png"
-import handwritting from "../../../public/handwritting.png"
 import CustomerCare from "@/components/customer-care";
 import Banner from "@/components/banner";
 
@@ -47,6 +44,30 @@ export default function BlogPage() {
     },
   ];
 
+  const blogs = [
+    {
+      id: 1,
+      title: "Going all-in with millennial design",
+      Description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum.",
+      image: "/post.png",
+    },
+    {
+      id: 2,
+      title: "Exploring new ways of decorating",
+      Description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum.",
+      image: "/post-2.png",
+    },
+    {
+      id: 3,
+      title: "Hand made pieces that took time to make",
+      Description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum.",
+      image: "/handwritting.png",
+    },
+  ];
+
   return (
     <>
       {/* Page Header */}
@@ -54,240 +75,116 @@ export default function BlogPage() {
 
       {/* Main Content */}
       <div className="lg:flex px-4">
-      <div className="max-w-6xl mx-auto  px-4 py-12 font-poppins">
-        <div className="grid grid-cols-1 lg:grid-cols-[650px]  gap-12">
-          {/* Blog Posts */}
-          <div>
-            <div className="space-y-8">
-              <div className="relative aspect-[16/9] w-full">
-                <Image
-                  src={laptop}
-                  alt="Featured blog post"
-                  fill
-                  className="object-cover rounded-lg"
-                  priority
-                />
-              </div>
+        <div className="max-w-6xl mx-auto  px-4 py-12 font-poppins">
+          <div className="grid grid-cols-1 lg:grid-cols-[650px]  gap-12">
+            {/* Blog Posts */}
+            <div>
+              {blogs.map((blog) => (
+                <div key={blog.id} className="space-y-8">
+                  <div className="relative mt-5 aspect-[16/9] w-full">
+                    <Image
+                      src={blog.image}
+                      alt="Featured blog post"
+                      className="object-cover w-full h-full rounded-lg"
+                      width={400}
+                      height={4}
+                    />
+                  </div>
 
-              <div className="lg:flex items-center gap-6 text-gray-500 text-sm">
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={admin}
-                    alt="Admin"
-                    width={16}
-                    height={16}
-                  />
-                  <span>Admin</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={date}
-                    alt="Date"
-                    width={16}
-                    height={16}
-                  />
-                  <span>14 Oct 2022</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={tag}
-                    alt="Tag"
-                    width={16}
-                    height={16}
-                  />
-                  <span>Wood</span>
-                </div>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-medium">
-                Going all-in with millennial design
-              </h2>
-              <p className="text-gray-600 leading-relaxed line-clamp-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum.
-              </p>
-              <Link
-                href="#"
-                className="text-black underline underline-offset-4 hover:text-gray-600"
-              >
-                Read more
-              </Link>
-            </div>
-          </div>
-          <div>
-            <div className="space-y-8">
-              <div className="relative aspect-[16/9] w-full">
-                <Image
-                  src={post}
-                  alt="Featured blog post"
-                  fill
-                  className="object-cover rounded-lg"
-                  priority
-                />
-              </div>
-
-              <div className="lg:flex items-center gap-6 text-gray-500 text-sm">
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={admin}
-                    alt="Admin"
-                    width={16}
-                    height={16}
-                  />
-                  <span>Admin</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={date}
-                    alt="Date"
-                    width={16}
-                    height={16}
-                  />
-                  <span>14 Oct 2022</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={tag}
-                    alt="Tag"
-                    width={16}
-                    height={16}
-                  />
-                  <span>Handmade</span>
-                </div>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-medium">
-                Going all-in with millennial design
-              </h2>
-              <p className="text-gray-600 leading-relaxed line-clamp-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum.
-              </p>
-              <Link
-                href="#"
-                className="text-black underline underline-offset-4 hover:text-gray-600"
-              >
-                Read more
-              </Link>
-            </div>
-          </div>
-          <div>
-            <div className="space-y-8">
-              <div className="relative aspect-[16/9] w-full">
-                <Image
-                  src={handwritting}
-                  alt="Featured blog post"
-                  fill
-                  className="object-cover rounded-lg"
-                  priority
-                />
-              </div>
-
-              <div className="lg:flex items-center gap-6 text-gray-500 text-sm">
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={admin}
-                    alt="Admin"
-                    width={16}
-                    height={16}
-                  />
-                  <span>Admin</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={date}
-                    alt="Date"
-                    width={16}
-                    height={16}
-                  />
-                  <span>14 Oct 2022</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={tag}
-                    alt="Tag"
-                    width={16}
-                    height={16}
-                  />
-                  <span>wood</span>
-                </div>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-medium">
-                Going all-in with millennial design
-              </h2>
-              <p className="text-gray-600 leading-relaxed line-clamp-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum.
-              </p>
-              <Link
-                href="#"
-                className="text-black underline underline-offset-4 hover:text-gray-600"
-              >
-                Read more
-              </Link>
-            </div>
-          </div>
-
-          {/* Sidebar */}
-          
-        </div>
-      </div>
-
-      <div className="space-y-8 px-4 mt-12  ">
-            {/* Search Bar */}
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search"
-                className="w-full p-4  border border-gray-300 rounded-lg"
-              />
-              <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-            </div>
-
-            {/* Categories */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-medium">Categories</h3>
-              <ul className="space-y-3">
-                {categories.map((category) => (
-                  <li
-                    key={category.name}
-                    className="flex justify-between items-center text-gray-800"
-                  >
-                    <Link href="#" className="hover:underline">
-                      {category.name}
-                    </Link>
-                    <span className="text-gray-500">{category.count}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Recent Posts */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-medium">Recent Posts</h3>
-              <div className="space-y-6">
-                {recentPosts.map((post, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="relative w-20 h-20">
-                      <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className="object-cover rounded-lg"
-                      />
+                  <div className="lg:flex items-center gap-6 text-gray-500 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Image src={admin} alt="Admin" width={16} height={16} />
+                      <span>Admin</span>
                     </div>
-                    <div>
-                      <h4 className="font-medium">
-                        <Link
-                          href="#"
-                          className="hover:underline hover:text-gray-600"
-                        >
-                          {post.title}
-                        </Link>
-                      </h4>
-                      <p className="text-sm text-gray-500">{post.date}</p>
+                    <div className="flex items-center gap-2">
+                      <Image src={date} alt="Date" width={16} height={16} />
+                      <span>14 Oct 2022</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Image src={tag} alt="Tag" width={16} height={16} />
+                      <span>Wood</span>
                     </div>
                   </div>
-                ))}
-              </div>
+                  <h2 className="text-2xl md:text-3xl font-medium">
+                    {blog.title}
+                  </h2>
+                  <p className="text-gray-600 leading-relaxed line-clamp-3">
+                    {blog.Description}
+                  </p>
+                  <Link
+                    href={`/blog/${blog.id}`}
+                    className="text-black underline underline-offset-4 hover:text-gray-600"
+                  >
+                    Read more
+                  </Link>
+                </div>
+              ))}
+            </div>
+
+            {/* Sidebar */}
+          </div>
+        </div>
+
+        <div className="space-y-8 px-4 mt-12  ">
+          {/* Search Bar */}
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search"
+              className="w-full p-4  border border-gray-300 rounded-lg"
+            />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+          </div>
+
+          {/* Categories */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-medium">Categories</h3>
+            <ul className="space-y-3">
+              {categories.map((category) => (
+                <li
+                  key={category.name}
+                  className="flex justify-between items-center text-gray-800"
+                >
+                  <Link href="#" className="hover:underline">
+                    {category.name}
+                  </Link>
+                  <span className="text-gray-500">{category.count}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Recent Posts */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-medium">Recent Posts</h3>
+            <div className="space-y-6">
+              {recentPosts.map((post, index) => (
+                <div key={index} className="flex gap-4">
+                  <div className="relative w-20 h-20">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover rounded-lg"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-medium">
+                      <Link
+                        href="#"
+                        className="hover:underline hover:text-gray-600"
+                      >
+                        {post.title}
+                      </Link>
+                    </h4>
+                    <p className="text-sm text-gray-500">{post.date}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-          </div>
+        </div>
+      </div>
 
       {/* Pagination */}
       <div className="flex gap-5 mt-10 mb-8 items-center justify-center text-center">
@@ -298,16 +195,10 @@ export default function BlogPage() {
       </div>
 
       {/* Features Section */}
-     <CustomerCare/>
+      <CustomerCare />
     </>
   );
 }
-
-
-
-
-
-
 
 // {/* <div className="space-y-8">
 //             {/* Search Bar */}

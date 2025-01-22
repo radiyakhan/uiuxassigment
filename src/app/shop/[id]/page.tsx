@@ -1,23 +1,28 @@
-"use client"
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { FaChevronRight, FaFacebook, FaLinkedin } from "react-icons/fa";
-import sofa from '../../../../public/sofa-set.jpg'
-import products  from "../../../../Data/data";
-interface Paramst {
-    params: {
-        id: string;
-    }
-}
-const Page = ({params} : Paramst) => {
-    const paramsd = Number(params.id)
-    const find = products.find((items)=> items.id === paramsd)
-  const [count, setCount] = useState(1);
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import AddToCart from "@/components/addtocart";
 
-  const increment = () => setCount(count + 1);
-  const decrement = () => count > 0 && setCount(count - 1);
+const Page = async ({ params }: { params: { id: string } }) => {
+  const data =
+    await client.fetch(`*[_type == "product" && _id == "${params.id}"]{
+    _id,
+      title,
+      description,
+      productImage {
+        asset->{
+          url
+        },
+      },
+      price,
+      tags,
+      dicountPercentage,
+      isNew
+    }`);
+  console.log("Fetched Data:", data);
   const relatedImages = [
     "/Product-1.png",
     "/product-2.png",
@@ -40,11 +45,13 @@ const Page = ({params} : Paramst) => {
             </p>
             <FaChevronRight />
           </div>
-          <div className="border-l items-center h-[40px] w-[120px] flex justify-end border-gray-700 pt-2 lg:pt-0">
-            <p className="text-sm md:text-base text-center lg:text-left">
-            {find?.title}
-            </p>
-          </div>
+          {data.map((product: any) => (
+            <div key={product._id} className="border-l items-center h-[40px] w-[120px] flex justify-end border-gray-700 pt-2 lg:pt-0">
+              <p className="text-sm md:text-base text-center lg:text-left">
+                {product.title}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -67,165 +74,182 @@ const Page = ({params} : Paramst) => {
               </span>
             ))}
           </div>
-          <div className="lg:h-[415px] lg:w-[423px] bg-[#F9F1E7] flex justify-center items-center rounded-xl">
-            <Image
-              src={find?.image || './'}
-              alt="Single Product Image"
-              className="rounded-lg"
-              height={391}
-              width={481}
-            />
-          </div>
-          <div className="h-auto lg:ml-10 flex flex-col gap-1">
-            <h2 className="font-semibold text-[42px]/[63px]">
-              {find?.title}
-            </h2>
-            <p className="text-[#9F9F9F] font-poppins font-medium text-2xl">
-              Rs.{find?.price}
-            </p>
-
-            {/* Reviews and Description */}
-            <div className="flex gap-2 items-center">
-              <Image src="/stars.png" alt="rating" width={124} height={20} />
-              <div className="border-l h-[30px] flex items-center pl-4">
-                <p className="text-[#9F9F9F] text-sm font-poppins">
-                  5 Customer Reviews
+          {data.map((product: any) => (
+            <div key={product._id} className="lg:flex">
+              <div className="lg:h-[300px] lg:w-[423px] lg:flex justify-center items-center">
+                <Image
+                  src={
+                    product.productImage
+                      ? urlFor(product.productImage).url()
+                      : "/placeholder-image.jpg"
+                  }
+                  alt="Single Product Image"
+                  className="lg:h-[500px] lg:w-full lg:mt-48 w-[200px] h-[200px]"
+                  height={40}
+                  width={481}
+                />
+              </div>
+              <div className="h-auto lg:ml-10 flex flex-col gap-1">
+                <h2 className="font-semibold text-[42px]/[63px]">
+                  {product.title}
+                </h2>
+                <p className="text-[#9F9F9F] font-poppins font-medium text-2xl">
+                  Rs.{product.price}
                 </p>
-              </div>
-            </div>
-            <p className="text-sm lg:w-[500px] font-poppins text-[#9F9F9F]">
-              {find?.description}
-            </p>
 
-            {/* Size Selection */}
-            <div className="mt-3">
-              <p className="font-poppins text-[#9F9F9F] text-sm">Size</p>
-              <div className="flex gap-4">
-                {["L", "XL", "XS"].map((size) => (
-                  <button
-                    key={size}
-                    type="button"
-                    className="w-[30px] h-[30px] flex items-center justify-center rounded-sm bg-[#F9F1E7] hover:bg-[#B88E2F] hover:text-white"
-                    aria-label={`Select size ${size}`}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Color Selection */}
-            <div>
-              <p className="font-poppins text-[#9F9F9F] text-sm">Color</p>
-              <div className="flex gap-4">
-                {["#816DFA", "black", "#B88E2F"].map((color) => (
-                  <button
-                    key={color}
-                    type="button"
-                    className={`w-[30px] h-[30px] rounded-full`}
-                    style={{ backgroundColor: color }}
-                    aria-label={`Select color ${color}`}
-                  ></button>
-                ))}
-              </div>
-            </div>
-
-            {/* Quantity and Actions */}
-            <div className="flex flex-col xl:flex-row gap-5 mt-4">
-              <span className="h-16 w-[123px] gap-7 border rounded-2xl flex items-center justify-center">
-                <button type="button" onClick={decrement}>
-                  -
-                </button>
-                <p>{count}</p>
-                <button type="button" onClick={increment}>
-                  +
-                </button>
-              </span>
-              <Link href="/cart">
-                <button
-                  type="button"
-                  className="h-16 w-[215px] border-2 border-black rounded-2xl flex items-center justify-center"
-                >
-                  Add To Cart
-                </button>
-              </Link>
-              <Link href="/product-comparision">
-                <button
-                  type="button"
-                  className="h-16 w-[215px] border-2 border-black rounded-2xl flex items-center justify-center"
-                >
-                  + Compare
-                </button>
-              </Link>
-            </div>
-            
-
-            <div>
-              <div>
-                <Image alt="line" src='/line 7.png' width={605.01} height={5} className="mt-16"/>
-              </div>
-              <div className="mt-9 flex flex-col gap-4 text-graay2">
-                <div>
-                  <ul className="flex gap-4">
-                    <li>SKU</li>
-                    <li>:</li>
-                    <li>SS001</li>
-                  </ul>
+                {/* Reviews and Description */}
+                <div className="flex gap-2 items-center">
+                  <Image
+                    src="/stars.png"
+                    alt="rating"
+                    width={124}
+                    height={20}
+                  />
+                  <div className="border-l h-[30px] flex items-center pl-4">
+                    <p className="text-[#9F9F9F] text-sm font-poppins">
+                      5 Customer Reviews
+                    </p>
+                  </div>
                 </div>
-                <div>
-                <ul className="flex gap-4">
-                    <li>Category</li>
-                    <li>:</li>
-                    <li>Sofas</li>
-                  </ul>
+                <p className="text-sm lg:w-[500px] font-poppins text-[#9F9F9F]">
+                  {product.description}
+                </p>
+
+                {/* Quantity and Actions */}
+                <div className="flex flex-col xl:flex-row gap-5 mt-4">
+                  <AddToCart
+                    product={{
+                      id: product.id,
+                      title: product.title,
+                      price: product.price,
+                      image: product.productImage,
+                    }}
+                  />
+                  <Link href="/product-comparision">
+                    <button
+                      type="button"
+                      className="h-16 w-[215px] border-2 hover:border-x-[3px] hover:border-y-[3px] border-black rounded-2xl flex items-center justify-center"
+                    >
+                      + Compare
+                    </button>
+                  </Link>
                 </div>
+
                 <div>
-                <ul className="flex gap-4">
-                    <li>Tags</li>
-                    <li>:</li>
-                    <li>Sofa, Chair, Home, Shop</li>
-                  </ul>
-                </div>
-                <div>
-                <ul className="flex gap-4">
-                    <li>SKU</li>
-                    <li>:</li>
-                    <li className="flex gap-6 text-2xl text-black">
-                      <Link href={'https://www.facebook.com/profile.php?id=100083278800324&mibextid=ZbWKwL'} target='_blank'><FaFacebook /></Link> 
-                      <Link href={'"https://www.linkedin.com/in/radiya-khan-133b112ba'} target="_blank"><FaLinkedin /></Link> 
-                      <AiFillTwitterCircle />
-                    </li>
-                  </ul>
+                  <div>
+                    <Image
+                      alt="line"
+                      src="/line 7.png"
+                      width={605.01}
+                      height={5}
+                      className="mt-16"
+                    />
+                  </div>
+                  <div className="mt-9 flex flex-col gap-4 text-graay2">
+                    <div>
+                      <ul className="flex gap-4">
+                        <li>SKU</li>
+                        <li>:</li>
+                        <li>SS001</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <ul className="flex gap-4">
+                        <li>Category</li>
+                        <li>:</li>
+                        <li>Sofas</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <ul className="flex gap-4">
+                        <li>Tags</li>
+                        <li>:</li>
+                        <li>Sofa, Chair, Home, Shop</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <ul className="flex gap-4">
+                        <li>SKU</li>
+                        <li>:</li>
+                        <li className="flex gap-6 text-2xl text-black">
+                          <Link
+                            href={
+                              "https://www.facebook.com/profile.php?id=100083278800324&mibextid=ZbWKwL"
+                            }
+                            target="_blank"
+                          >
+                            <FaFacebook />
+                          </Link>
+                          <Link
+                            href={
+                              '"https://www.linkedin.com/in/radiya-khan-133b112ba'
+                            }
+                            target="_blank"
+                          >
+                            <FaLinkedin />
+                          </Link>
+                          <AiFillTwitterCircle />
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
       {/* line */}
-      <Image src={'/line 8.png'} alt="line" width={5} height={5} className="mt-16 w-full"/>
+      <Image
+        src={"/line 8.png"}
+        alt="line"
+        width={5}
+        height={5}
+        className="mt-16 w-full"
+      />
       {/* discription */}
-      <div>
-        <div className="lg:flex gap-12 mt-12 justify-center mb-6 ml-5">
-          <h1 className="text-[24px] leading-[36px] font-medium">Description</h1>
-          <h1 className="text-[24px] leading-[36px] font-[400] text-graay3">Additional Information</h1>
-          <h1 className="text-[24px] leading-[36px] font-[400] text-graay3">Review[5]</h1>
-        </div>
-        <div className="flex-col justify-center font-[400] lg:text-base text-sm text-[#9F9F9F] lg:px-[220px] px-5">
-          <p >
-          Embodying the raw, wayward spirit of rock n roll, the Kilburn portable active stereo speaker takes the unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.
-          </p>
-          <br/>
-          <p>
-          Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.
-          </p>
-        </div>
-          <div className="mt-5 lg:ml-20 lg:flex px-2 gap-4">
-            <Image src={sofa} alt="sofa set" className="w-[600px] mb-2 "/>
-            <Image src={sofa} alt="sofa set" className="w-[600px]"/>
+      {data.map((product: any) => (
+        <div key={product._id}>
+          <div className="lg:flex gap-12 mt-12 justify-center mb-6 ml-5">
+            <h1 className="text-[24px] leading-[36px] font-medium">
+              Description
+            </h1>
+            <h1 className="text-[24px] leading-[36px] font-[400] text-graay3">
+              Additional Information
+            </h1>
+            <h1 className="text-[24px] leading-[36px] font-[400] text-graay3">
+              Review[5]
+            </h1>
           </div>
-          
-      </div>
+          <div className="flex-col justify-center font-[400] lg:text-base text-sm text-[#9F9F9F] lg:px-[220px] px-5">
+            {product.description}
+          </div>
+          <div className="mt-5  lg:ml-20 lg:flex h-full px-2 gap-4">
+            <Image
+              src={
+                product.productImage
+                  ? urlFor(product.productImage).url()
+                  : "/placeholder-image.jpg"
+              }
+              alt="sofa set"
+              className="w-[600px] mb-2 "
+              width={500}
+              height={4}
+            />
+            <Image
+              src={
+                product.productImage
+                  ? urlFor(product.productImage).url()
+                  : "/placeholder-image.jpg"
+              }
+              alt="sofa set"
+              className="w-[600px] mb-2"
+              width={500}
+              height={4}
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

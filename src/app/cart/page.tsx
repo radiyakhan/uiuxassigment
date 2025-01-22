@@ -1,10 +1,60 @@
-"use client"
+"use client";
 import Image from "next/image";
-import Link from "next/link";
 import CustomerCare from "@/components/customer-care";
 import Banner from "@/components/banner";
+import { useState, useEffect } from "react";
+import { IoIosStar } from "react-icons/io";
+interface CartItem {
+  id: number;
+  title: string;
+  price: number;
+  quantity: number;
+  image: string;
+}
+const Page = () => {
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  
 
-export default function Cart() {
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]") as CartItem[];
+    setCartItems(cart);
+    calculateTotal(cart);
+  }, []);
+
+  const calculateTotal = (items: CartItem[]) => {
+    
+  };
+
+  const handleRemoveItem = (id: number) => {
+    const updatedCart = cartItems.filter((item) => item.id !== id);
+    setCartItems(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    calculateTotal(updatedCart);
+  };
+
+  const handleIncreaseQuantity = (id: number) => {
+    const updatedCart = cartItems.map((item) => {
+      if (item.id === id) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+    setCartItems(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    calculateTotal(updatedCart);
+  };
+
+  const handleDecreaseQuantity = (id: number) => {
+    const updatedCart = cartItems.map((item) => {
+      if (item.id === id && item.quantity > 1) {
+        return { ...item, quantity: item.quantity - 1 };
+      }
+      return item;
+    });
+    setCartItems(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    calculateTotal(updatedCart);
+  };
   return (
     <div>
       <Banner name="Cart" title="Cart" logo="/logo.png" />
@@ -14,81 +64,89 @@ export default function Cart() {
           {/* product */}
           <div className="w-full lg:w-[817px] h-auto lg:h-[215px] flex flex-col justify-between">
             <div className="h-[55px] bg-[#F9F1E7] flex items-center px-4 lg:px-40 gap-4 lg:gap-28">
-              <p className="font-poppins font-medium text-sm lg:text-base">Product</p>
-              <p className="font-poppins font-medium text-sm lg:text-base">Price</p>
-              <p className="font-poppins font-medium text-sm lg:text-base ml-3">Quantity</p>
-              <p className="font-poppins font-medium text-sm lg:text-base">Subtotal</p>
+              <p className="font-poppins font-medium text-sm lg:text-base">
+                Product
+              </p>
+              <p className="font-poppins font-medium text-sm lg:text-base">
+                Price
+              </p>
+              <p className="font-poppins font-medium text-sm lg:text-base lg:-ml-8">
+                Quantity
+              </p>
+              <p className="font-poppins font-medium lg:-ml-14 text-sm lg:text-base">
+                Subtotal
+              </p>
             </div>
+            {cartItems.length > 0 ? (
+              cartItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex  md:flex-row items-start md:items-center gap-4 justify-between text-gray-700 py-4 border-b"
+                >
+                  {/* Product Details */}
+                  <div className="flex items-center gap-4 w-full md:w-2/5">
+                    {item.image && (
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={80}
+                        height={80}
+                        className="rounded-md"
+                      />
+                    )}
+                    <div className="lg:ml-16">
+                      <h1 className="font-semibold text-black">{item.title}</h1>
+                      <div className="flex text-yellow-500 text-sm">
+                        {[...Array(5)].map((_, i) => (
+                          <IoIosStar key={i} />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
 
-            <div className="h-auto lg:h-[108px] flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-0 py-4 lg:py-0">
-              <Image
-                src={"/chairset.png"}
-                alt="product image"
-                height={105}
-                width={108}
-                className="object-contain"
-              />
+                  <h1 className="w-full md:w-1/5 text-center text-sm lg:text-base lg:ml-0 ml-12 mt-2 md:mt-0">
+                    Rs. {item.price}
+                  </h1>
 
-              <div className="h-auto lg:h-[25px] flex flex-col lg:flex-row gap-4 lg:gap-20 items-center">
-                <p className="font-poppins text-sm lg:text-base font-normal text-[#9F9F9F]">
-                  Asgaard sofa
-                </p>
-                <p className="font-poppins text-sm lg:text-base font-normal text-[#9F9F9F]">
-                  Rs. 250,000.00
-                </p>
-                <p className="font-poppins text-sm lg:text-base font-normal border border-[#9F9F9F] flex items-center justify-center w-8 h-8 rounded-md">
-                  1
-                </p>
-                <p className="font-poppins text-sm lg:text-base font-normal">
-                  Rs. 250,000.00
-                </p>
-              </div>
-
-              <Image
-                src={"/delete.png"}
-                alt="product image"
-                height={21.88}
-                width={21}
-                className="hover:cursor-pointer"
-              />
-            </div>
-          </div>
-
-          {/* price */}
-          <div className="h-auto lg:h-[390px] w-full lg:w-[393px] flex flex-col items-center justify-center gap-10 bg-[#F9F1E7] p-6 lg:p-0">
-            <h3 className="font-poppins font-semibold text-2xl lg:text-[32px]/[48px]">
-              Cart Totals
-            </h3>
-
-            <div className="flex flex-col gap-4 lg:gap-7 mt-3">
-              <span className="flex justify-between gap-4">
-                <p className="font-poppins text-sm lg:text-base font-medium">Subtotal</p>
-                <p className="font-poppins text-sm lg:text-base font-normal text-[#9F9F9F]">
-                  Rs. 250,000.00
-                </p>
-              </span>
-
-              <span className="flex justify-between gap-4">
-                <p className="font-poppins text-sm lg:text-base font-medium">Total</p>
-                <p className="text-[#B88E2F] text-lg lg:text-xl/[30px] font-medium font-poppins">
-                  Rs. 250,000.00
-                </p>
-              </span>
-            </div>
-
-            <Link href={"/checkout"}>
-              <button
-                type="button"
-                className="text-lg lg:text-xl/[30px] font-normal h-12 lg:h-[58px] border border-black w-[222px] rounded-xl"
-              >
-                Check Out
-              </button>
-            </Link>
+                  {/* Quantity Controls */}
+                  <div className="flex justify-center items-center gap-2 border border-gray-200 w-[100px] h-[30px] text-[16px] font-medium text-center rounded-2xl mt-2 md:mt-0">
+                    <button
+                      className="px-2 py-1 rounded"
+                      onClick={() => handleDecreaseQuantity(item.id)}
+                    >
+                      -
+                    </button>
+                    <span className="text-sm lg:text-base font-medium">{item.quantity}</span>
+                    <button
+                      className="px-2 py-1 rounded"
+                      onClick={() => handleIncreaseQuantity(item.id)}
+                    >
+                      +
+                    </button>
+                  </div>
+                  {/* Price */}
+                  <h1 className="w-full md:w-1/5 text-center mt-2 md:mt-0">
+                    Rs. {item.price * item.quantity}
+                  </h1>
+                  {/* Remove Button */}
+                  <button
+                    onClick={() => handleRemoveItem(item.id)}
+                    className="w-full md:w-1/5 text-center text-red-500 hover:text-red-700 font-bold mt-2 md:mt-0"
+                  >
+                    X
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p>Your cart is empty</p>
+            )}
           </div>
         </div>
       </div>
 
-      <CustomerCare/>
+      <CustomerCare />
     </div>
   );
-}
+};
+
+export default Page;
