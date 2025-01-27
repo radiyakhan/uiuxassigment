@@ -4,6 +4,8 @@ import CustomerCare from "@/components/customer-care";
 import Banner from "@/components/banner";
 import { useState, useEffect } from "react";
 import { IoIosStar } from "react-icons/io";
+import Link from "next/link";
+
 interface CartItem {
   id: number;
   title: string;
@@ -11,9 +13,9 @@ interface CartItem {
   quantity: number;
   image: string;
 }
+
 const Page = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]") as CartItem[];
@@ -21,12 +23,14 @@ const Page = () => {
     calculateTotal(cart);
   }, []);
 
-  
-    const calculateTotal = (cart: CartItem[]) => {
-      const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-      console.log("Total Price:", total);
-    };
-    
+  const calculateTotal = (cart: CartItem[]) => {
+    const total = cart.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
+    console.log("Total Price:", total);
+  };
+
   const handleRemoveItem = (id: number) => {
     const updatedCart = cartItems.filter((item) => item.id !== id);
     setCartItems(updatedCart);
@@ -57,13 +61,19 @@ const Page = () => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     calculateTotal(updatedCart);
   };
+
+  const totalAmount = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
   return (
     <div>
       <Banner name="Cart" title="Cart" logo="/logo.png" />
 
       <div className="h-auto lg:h-[525px] flex justify-center items-center px-4 md:px-6 lg:px-0 xl:my-0 my-5">
         <div className="h-auto lg:h-[390px] w-full lg:w-[1240px] flex flex-col xl:flex-row justify-between gap-6">
-          {/* product */}
+          {/* Product List */}
           <div className="w-full lg:w-[817px] h-auto lg:h-[215px] flex flex-col justify-between">
             <div className="h-[55px] bg-[#F9F1E7] flex items-center px-4 lg:px-40 gap-4 lg:gap-28">
               <p className="font-poppins font-medium text-sm lg:text-base">
@@ -118,7 +128,9 @@ const Page = () => {
                     >
                       -
                     </button>
-                    <span className="text-sm lg:text-base font-medium">{item.quantity}</span>
+                    <span className="text-sm lg:text-base font-medium">
+                      {item.quantity}
+                    </span>
                     <button
                       className="px-2 py-1 rounded"
                       onClick={() => handleIncreaseQuantity(item.id)}
@@ -142,6 +154,31 @@ const Page = () => {
             ) : (
               <p>Your cart is empty</p>
             )}
+          </div>
+
+          {/* Cart Totals (only rendered once) */}
+          <div className="bg-[#F9F1E7] py-8 px-11 sm:p-8 rounded-sm shadow-lg w-auto sm:w-1/2 lg:w-full mx-auto">
+            <h2 className="text-3xl font-semibold text-center mb-16">
+              Cart Totals
+            </h2>
+            <div className="flex justify-between mb-5">
+              <span className="text-base font-semibold">Subtotal</span>
+              <span className="text-base text-[#9F9F9F]">
+                Rs. {totalAmount}
+              </span>
+            </div>
+            <div className="flex justify-between font-medium mb-5">
+              <span className="text-base font-semibold">Total</span>
+              <span className="text-xl text-[#B88E2F] font-semibold">
+                Rs. {totalAmount}
+              </span>
+            </div>
+
+            <Link href="/checkout">
+              <button className="block mx-auto w-[200px] rounded-xl border border-black text-black px-2 py-3 text-xl hover:bg-[#fae9d3a6] transition my-10">
+                Check Out
+              </button>
+            </Link>
           </div>
         </div>
       </div>
