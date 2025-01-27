@@ -8,7 +8,7 @@ import Banner from "@/components/banner";
 import { client } from "@/sanity/lib/client";
 import { GoArrowSwitch } from "react-icons/go";
 import { IoShareSocialSharp } from "react-icons/io5";
-import AddToCart from "@/components/addtocart2";
+// import AddToCart from "@/components/addtocart2";
 import AddToList from "@/components/addtowishlist";
 
 const formatPrice = (price: number) => {
@@ -128,16 +128,16 @@ const Shop = async () => {
                 </div>
 
                 {/* Hover Options */}
-                <Link href={`/shop/${product._id}`}>
+                
                   <div className="absolute inset-0 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-transform duration-200 ease-in-out">
-                    <AddToCart
-                      product={{
-                        id: product._id,
-                        title: product.title,
-                        price: product.price,
-                        image: product.productImage,
-                      }}
-                    />
+                   <Link href={`/shop/${product._id}`}>
+                    <h1
+                      
+                      className="bg-white text-yellow-600 font-bold py-2 px-4 rounded shadow mb-2 hover:shadow-lg hover:bg-graay transition-shadow"
+                    >
+                      View Detail
+                    </h1>
+                    </Link>
                     <div className="flex justify-center space-x-2 text-white text-sm mt-2">
                       <button className="hover:text-black flex items-center">
                         <IoShareSocialSharp /> Share
@@ -157,11 +157,13 @@ const Shop = async () => {
                       />
                     </div>
                   </div>
-                </Link>
+                
               </div>
             ))
           ) : (
-            <h1 className="text-center text-red-600 items-center text-xl">Products not found</h1>
+            <h1 className="text-center text-red-600 items-center text-xl">
+              Products not found
+            </h1>
           )}
         </div>
 
