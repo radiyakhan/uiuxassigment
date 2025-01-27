@@ -121,11 +121,13 @@ const Page = async ({ params }: { params: { id: string } }) => {
                 {/* Quantity and Actions */}
                 <div className="flex flex-col xl:flex-row gap-5 mt-4">
                   <AddToCart
-                    product={{
-                      id: product.id,
+                     product={{
+                      id: product._id,
                       title: product.title,
                       price: product.price,
-                      image: product.productImage,
+                      image:  product.productImage
+                      ? urlFor(product.productImage).url()
+                      : "/placeholder-image.jpg"
                     }}
                   />
                   <Link href="/product-comparision">
@@ -193,7 +195,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
           ))}
         </div>
       </div>
-      
       {/* discription */}
       {data.map((product: any) => (
         <div key={product._id}>
