@@ -93,7 +93,10 @@ export default function Product(){
               {/* Hover Options */}
               <Link href={`/shop/${product._id}`}>
                 <div className="absolute inset-0 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-transform duration-200 ease-in-out">
-                <Link href={`/shop/${product._id}`}>
+
+
+                  <Link href={`/shop/${product._id}`}>
+
                     <h1
                       
                       className="bg-white text-yellow-600 font-bold py-2 px-4 rounded shadow mb-2 hover:shadow-lg hover:bg-graay transition-shadow"
