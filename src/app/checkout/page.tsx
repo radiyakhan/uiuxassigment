@@ -21,7 +21,9 @@ export default function CheckoutPage() {
       company: userDetails.company,
       address: `${userDetails.street}, ${userDetails.town}, ${userDetails.city}, ${userDetails.zipCode}, ${userDetails.country}`,
       orderTotal: calculateTotal(),
-      cartItems,
+      cartItems: cartItems.map((item) => ({
+        image: item.image,
+      })),
       orderStatus: "Order Confirmed",
     };
     try {
@@ -103,15 +105,15 @@ export default function CheckoutPage() {
   return (
     <div>
       <Banner name="Checkout" title="Checkout" logo="/logo.png" />
-      <div className="flex flex-col px-52">
+      <div className="flex flex-col lg:px-52">
         <h1 className="font-semibold text-4xl/[54px] font-poppins">
           Billing details
         </h1>
       </div>
-      <div className="grid gap-8 lg:grid-cols-2 container py-8 lg:px-[180px] lg:mx-[40px] px-9 my-[50px]">
-        <form className="space-y-8" onSubmit={handleSubmit}>
-          <div className="flex gap-5">
-            <div className="w-[212px] h-[121px] flex flex-col justify-between">
+      <div className="grid gap-8 px-2 lg:flex lg:mx-[60px] ">
+      <form className="space-y-8" onSubmit={handleSubmit}>
+          <div className="flex lg:gap-5 gap-2">
+            <div className="w-[170px] h-[110px] flex flex-col justify-between">
               <label
                 htmlFor="firstName"
                 className="font-medium font-poppins text-base"
@@ -127,7 +129,7 @@ export default function CheckoutPage() {
                 className="sm:w-[212px] w-full sm:h-[75px] h-[60px] border placeholder:text-[#9F9F9F] border-[#9F9F9F] rounded-[10px] font-poppins text-base px-4"
               />
             </div>
-            <div className="w-[212px] h-[121px] flex flex-col justify-between">
+            <div className="w-[170px] h-[110px] flex flex-col justify-between">
               <label
                 htmlFor="lastName"
                 className="font-medium font-poppins text-base"
@@ -146,7 +148,7 @@ export default function CheckoutPage() {
             </div>
           </div>
 
-          <div className="h-[121px] flex flex-col justify-between">
+          <div className="h-[110px] flex flex-col justify-between">
             <label
               htmlFor="company"
               className="font-medium font-poppins text-base"
@@ -323,7 +325,8 @@ export default function CheckoutPage() {
             Place order
           </button>
         </form>
-        <div className="md:w-[600px] w-auto sm:h-auto px-10 gap-10">
+
+        <div className="md:w-[600px] w-auto sm:h-auto px-3 gap-10">
           <div className="bg-[#F9F1E7] py-8 px-11 sm:p-8 rounded-sm shadow-lg w-full mx-auto">
             <h2 className="text-3xl font-semibold text-center mb-8">
               Your Cart
@@ -423,8 +426,10 @@ export default function CheckoutPage() {
             </p>
           </div>
         </div>
-        <div>
-          {/* {showPopup && (
+        
+        <div> 
+        
+          {showPopup && (
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
               <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
                 <h2 className="text-lg font-semibold mb-4">Order Details</h2>
@@ -459,55 +464,13 @@ export default function CheckoutPage() {
                 </h1>
                 <button
                   onClick={() => setShowPopup(false)}
-                  className="mt-4 px-4 py-2 bg-orange-500 text-white rounded-md shadow-sm hover:bg-orange-600 focus:outline-none"
+                  className="mt-4 px-4 py-2 bg-brown text-white rounded-md shadow-sm focus:outline-none"
                 >
                   Close
                 </button>
               </div>
             </div>
-          )} */}
-          {showPopup && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-              <h2 className="text-lg font-semibold mb-4">Order Details</h2>
-              <h1>Take a screenshot of this:</h1>
-              <p>
-                <strong>User ID:</strong> {userId}
-              </p>
-              <p>
-                <strong>Full Name:</strong> {userDetails.firstName}{" "}
-                {userDetails.lastName}
-              </p>
-              <p>
-                <strong>Email:</strong> {userDetails.email}
-              </p>
-              <p>
-                <strong>Phone:</strong> {userDetails.phone}
-              </p>
-              <p>
-                <strong>Company:</strong> {userDetails.company}
-              </p>
-              <p>
-                <strong>Address:</strong> {userDetails.street},{" "}
-                {userDetails.town}, {userDetails.city}, {userDetails.zipCode},{" "}
-                {userDetails.country}
-              </p>
-              <p>
-                <strong>Order Total:</strong> ${calculateTotal()}
-              </p>
-              <h1>
-                Message has been sent to the owner Radiya Khan
-                <span>radiyakhan59@gmail.com</span>
-              </h1>
-              <button
-                onClick={() => setShowPopup(false)}
-                className="mt-4 px-4 py-2 bg-brown text-white rounded-md shadow-sm focus:outline-none"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
+          )}
         </div>
       </div>
     </div>
